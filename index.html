@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oliver B. Lund - Data Science Projects</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Playfair+Display:wght@700&display=swap"
+        rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet">
+    <link href="css/header.css" rel="stylesheet">
+    <link href="css/navigation.css" rel="stylesheet">
+    <link href="css/projects.css" rel="stylesheet">
+    <link href="css/gallery.css" rel="stylesheet">
+    <link href="css/services.css" rel="stylesheet">
+    <link href="css/about.css" rel="stylesheet">
+    <link href="css/footer.css" rel="stylesheet">
+    <link href="css/carousel.css" rel="stylesheet">
+    <style>
+        #gis-canvas {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        
+        .particle-section {
+            position: relative;
+            width: 33.33%;
+            height: 100%;
+            overflow: hidden;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="animation-container">
+            <div class="particle-section" id="particles-js-1">
+                <div class="section-label">Data science</div>
+            </div>
+            <div class="particle-section" id="gis-animation">
+                <canvas id="gis-canvas"></canvas>
+                <div class="section-label">GIS & geospatial analysis</div>
+                <div class="header-text">
+                    <h1 class="text-white">Oliver B. Lund</h1>
+                    <p>Data Science & Analytics Projects</p>
+                    <p class="tagline">Transforming complex data into actionable insights</p>
+                </div>
+            </div>
+            <div class="particle-section" id="earth-animation">
+                <canvas id="treeCanvas"></canvas>
+                <div id="rain-particles"></div>
+                <div class="section-label">Environmental science</div>
+            </div>
+        </div>
+    </header>
+
+    <nav class="navbar">
+        <ul class="nav-list">
+            <li class="nav-item"><a href="#home" class="nav-link active">Home</a></li>
+            <li class="nav-item"><a href="#projects" class="nav-link">Software projects</a></li>
+            <li class="nav-item"><a href="#gallery" class="nav-link">Gallery</a></li>
+            <li class="nav-item"><a href="#services" class="nav-link">Services</a></li>
+            <li class="nav-item"><a href="#about" class="nav-link">About</a></li>
+            <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section id="home" class="page-section active">
+            <div class="container">
+                <h1 class="text-center mb-4">Welcome to My Data Science Portfolio</h1>
+                <p class="intro text-center mb-5">Explore my journey through data science and analytics projects.</p>
+
+                <div class="expertise-section mb-5 bg-light p-4 rounded">
+                    <h2 class="text-center mb-4">My Expertise</h2>
+                    <p class="text-center mb-4">With a strong background in statistics and programming, I specialize in
+                        turning complex data into actionable insights. My approach combines rigorous analysis with
+                        creative problem-solving to deliver tailored solutions for businesses and researchers alike.</p>
+
+                    <div class="row">
+                        <div class="col-md-4 mb-4">
+                            <div class="specialty-card h-100 p-3 bg-white rounded shadow-sm">
+                                <h3 class="text-center mb-3"><i class="fas fa-database me-2"></i>Data Science and
+                                    Analytics</h3>
+                                <p>Expertise in handling large datasets, performing complex data operations such as
+                                    filtering and merging, and creating insightful visualizations. Proficient in working
+                                    with both local files and databases to extract meaningful insights.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-4">
+                            <div class="specialty-card h-100 p-3 bg-white rounded shadow-sm">
+                                <h3 class="text-center mb-3"><i class="fas fa-map-marked-alt me-2"></i>Automated Map
+                                    Creation</h3>
+                                <p>Specialized in creating maps with spatial data, with a focus on automating the map
+                                    creation process. Using Python within QGIS to efficiently produce multiple
+                                    high-quality maps, streamlining geospatial analysis and visualization.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-4">
+                            <div class="specialty-card h-100 p-3 bg-white rounded shadow-sm">
+                                <h3 class="text-center mb-3"><i class="fas fa-laptop-code me-2"></i>Custom Software
+                                    Development</h3>
+                                <p>Proficient in creating bespoke software solutions using Python. Experienced in
+                                    developing both backend and frontend components with libraries like Tkinter and
+                                    PyQt, delivering user-friendly applications for data analysis and visualization.</p>
+                            </div>
+                        </div>
+                        <section class="expertise-section">
+                            <h2 class="text-center mb-5">Areas of Expertise</h2>
+                            
+                            <div class="expertise-item row align-items-center mb-5">
+                                <div class="col-md-6 order-md-2">
+                                    <img src="Images/Gallery/Plots/plot1.png" alt="Data Science" class="img-fluid rounded">
+                                </div>
+                                <div class="col-md-6 order-md-1">
+                                    <h3>Data Science</h3>
+                                    <p>Leveraging advanced analytics and machine learning to extract insights from complex datasets. Proficient in Python, R, and various data visualization tools.</p>
+                                    <ul class="list-unstyled">
+                                        <li><i class="fas fa-check-circle"></i> Statistical Analysis</li>
+                                        <li><i class="fas fa-check-circle"></i> Machine Learning</li>
+                                        <li><i class="fas fa-check-circle"></i> Data Visualization</li>
+                                    </ul>
+                                </div>
+                            </div>
+                
+                            <div class="expertise-item row align-items-center mb-5">
+                                <div class="col-md-6">
+                                    <img src="https://via.placeholder.com/400x300" alt="GIS" class="img-fluid rounded">
+                                </div>
+                                <div class="col-md-6">
+                                    <h3>GIS</h3>
+                                    <p>Expertise in spatial analysis and cartography using advanced GIS tools. Creating insightful maps and conducting geospatial analysis for environmental projects.</p>
+                                    <ul class="list-unstyled">
+                                        <li><i class="fas fa-check-circle"></i> Spatial Analysis</li>
+                                        <li><i class="fas fa-check-circle"></i> Cartography</li>
+                                        <li><i class="fas fa-check-circle"></i> Remote Sensing</li>
+                                    </ul>
+                                </div>
+                            </div>
+                
+                            <div class="expertise-item row align-items-center mb-5">
+                                <div class="col-md-6 order-md-2">
+                                    
+                                    <img src="images/software-dev-illustration.jpg" alt="Software Development" class="img-fluid rounded">
+                                </div>
+                                <div class="col-md-6 order-md-1">
+                                    <h3>Software Development</h3>
+                                    <p>Developing custom software solutions for environmental and data analysis needs. Proficient in multiple programming languages and software design principles.</p>
+                                    <ul class="list-unstyled">
+                                        <li><i class="fas fa-check-circle"></i> Python Development</li>
+                                        <li><i class="fas fa-check-circle"></i> API Integration</li>
+                                        <li><i class="fas fa-check-circle"></i> Database Management</li>
+                                    </ul>
+                                </div>
+                            </div>
+                
+                            <div class="expertise-item row align-items-center">
+                                <div class="col-md-6">
+                                    <img src="https://via.placeholder.com/400x300" alt="Web Development" class="img-fluid rounded">
+                                </div>
+                                <div class="col-md-6">
+                                    <h3>Web Development</h3>
+                                    <p>Creating responsive and interactive web applications. Skilled in front-end and back-end technologies to build comprehensive web solutions.</p>
+                                    <ul class="list-unstyled">
+                                        <li><i class="fas fa-check-circle"></i> HTML/CSS/JavaScript</li>
+                                        <li><i class="fas fa-check-circle"></i> Responsive Design</li>
+                                        <li><i class="fas fa-check-circle"></i> Web Application Development</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+
+                <section class="featured-projects bg-light">
+                    <div class="container">
+                        <h2 class="text-center"><i class="fas fa-star text-primary me-2"></i>Featured Software Projects
+                        </h2>
+                        <div class="project-carousel position-relative">
+                            <button
+                                class="carousel-arrow prev btn btn-light rounded-circle position-absolute top-50 start-0 translate-middle-y"
+                                aria-label="Previous project">
+                                <i class="fas fa-chevron-left"></i>
+                            </button>
+                            <div class="project-cards-container">
+                                <div class="project-cards">
+                                    <div class="project-card shadow-sm rounded overflow-hidden" data-aos="fade-up">
+                                        <img data-src="Images/DataMerger/DataMerger.jpg" alt="DataMerger" class="img-fluid">
+                                        <div class="project-card-content p-3">
+                                            <h3 class="h4 mb-2">DataMerger</h3>
+                                            <p class="mb-3">Efficient tool for various data related tasks.
+                                                Load either local files or from locally hosted SQL database.
+                                                Allows for many filtering options, including spatial filters with
+                                                in-built map for spatial data.
+                                                Statistics and plots are also available.</p>
+                                            <a href="#projects" class="btn btn-outline-primary mb-2"
+                                                data-project="datamerger">Learn More</a>
+                                            <div class="project-tags">
+                                                <span class="tag badge bg-light text-dark me-1">Python</span>
+                                                <span class="tag badge bg-light text-dark">Pandas</span>
+                                                <span class="tag badge bg-light text-dark">SQL</span>
+                                                <span class="tag badge bg-light text-dark">PyQt6</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="project-card shadow-sm rounded overflow-hidden" data-aos="fade-up">
+                                        <img data-src="https://via.placeholder.com/150" alt="HeadAnalyser" class="img-fluid">
+                                        <div class="project-card-content p-3">
+                                            <h3 class="h4 mb-2">HeadAnalyser</h3>
+                                            <p class="mb-3">Advanced tool for analyzing head movements</p>
+                                            <a href="#projects" class="btn btn-outline-primary mb-2"
+                                                data-project="headanalyser">Learn More</a>
+                                            <div class="project-tags">
+                                                <span class="tag badge bg-light text-dark me-1">Python</span>
+                                                <span class="tag badge bg-light text-dark me-1">OpenCV</span>
+                                                <span class="tag badge bg-light text-dark">TensorFlow</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- New placeholder project cards -->
+                                    <div class="project-card shadow-sm rounded overflow-hidden" data-aos="fade-up">
+                                        <img data-src="https://via.placeholder.com/150" alt="KMLComrade" class="img-fluid">
+                                        <div class="project-card-content p-3">
+                                            <h3 class="h4 mb-2">KMLComrade</h3>
+                                            <p class="mb-3">Environmental monitoring and data analysis platform</p>
+                                            <a href="#projects" class="btn btn-outline-primary mb-2"
+                                                data-project="kmlcomrade">Learn More</a>
+                                            <div class="project-tags">
+                                                <span class="tag badge bg-light text-dark me-1">Python</span>
+                                                <span class="tag badge bg-light text-dark me-1">KML</span>
+                                                <span class="tag badge bg-light text-dark">GIS</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="project-card shadow-sm rounded overflow-hidden" data-aos="fade-up">
+                                        <img data-src="https://via.placeholder.com/150" alt="ClimateViz" class="img-fluid">
+                                        <div class="project-card-content p-3">
+                                            <h3 class="h4 mb-2">ClimateViz</h3>
+                                            <p class="mb-3">Interactive climate data visualization tool</p>
+                                            <a href="#projects" class="btn btn-outline-primary mb-2"
+                                                data-project="climateviz">Learn More</a>
+                                            <div class="project-tags">
+                                                <span class="tag badge bg-light text-dark me-1">D3.js</span>
+                                                <span class="tag badge bg-light text-dark me-1">React</span>
+                                                <span class="tag badge bg-light text-dark">Python</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="project-card shadow-sm rounded overflow-hidden" data-aos="fade-up">
+                                        <img data-src="https://via.placeholder.com/150" alt="BiodiverSim" class="img-fluid">
+                                        <div class="project-card-content p-3">
+                                            <h3 class="h4 mb-2">BiodiverSim</h3>
+                                            <p class="mb-3">Biodiversity simulation and prediction model</p>
+                                            <a href="#projects" class="btn btn-outline-primary mb-2"
+                                                data-project="biodiversim">Learn More</a>
+                                            <div class="project-tags">
+                                                <span class="tag badge bg-light text-dark me-1">Python</span>
+                                                <span class="tag badge bg-light text-dark me-1">SciPy</span>
+                                                <span class="tag badge bg-light text-dark">Matplotlib</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <button
+                                class="carousel-arrow next btn btn-light rounded-circle position-absolute top-50 end-0 translate-middle-y"
+                                aria-label="Next project">
+                                <i class="fas fa-chevron-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="featured-plots bg-light">
+                    <div class="container">
+                        <h2 class="text-center"><i class="fas fa-chart-line text-primary me-2"></i>Featured Plots</h2>
+                        <div class="plot-carousel position-relative">
+                            <button
+                                class="carousel-arrow prev btn btn-light rounded-circle position-absolute top-50 start-0 translate-middle-y"
+                                aria-label="Previous plot">
+                                <i class="fas fa-chevron-left"></i>
+                            </button>
+                            <div class="plot-cards-container">
+                                <div class="plot-cards">
+                                    <div class="plot-card shadow-sm rounded overflow-hidden" data-aos="fade-up">
+                                        <img data-src="Images/Gallery/Plots/plot1.png" alt="Featured Plot 1"
+                                            class="img-fluid">
+                                        <div class="plot-card-content p-3">
+                                            <h3 class="h4 mb-2">Data Distribution Analysis</h3>
+                                            <p class="mb-3">Visualizing complex data distributions</p>
+                                            <a href="#gallery" class="btn btn-outline-primary mb-2">View Gallery</a>
+                                        </div>
+                                    </div>
+                                    <div class="plot-card shadow-sm rounded overflow-hidden" data-aos="fade-up">
+                                        <img data-src="Images/Gallery/Plots/plot2.png" alt="Featured Plot 2"
+                                            class="img-fluid">
+                                        <div class="plot-card-content p-3">
+                                            <h3 class="h4 mb-2">Time Series Analysis</h3>
+                                            <p class="mb-3">Analyzing trends over time</p>
+                                            <a href="#gallery" class="btn btn-outline-primary mb-2">View Gallery</a>
+                                        </div>
+                                    </div>
+                                    <div class="plot-card shadow-sm rounded overflow-hidden" data-aos="fade-up">
+                                        <img data-src="Images/Gallery/Plots/plot3.png" alt="Featured Plot 2"
+                                            class="img-fluid">
+                                        <div class="plot-card-content p-3">
+                                            <h3 class="h4 mb-2">Time Series Analysis</h3>
+                                            <p class="mb-3">Analyzing trends over time</p>
+                                            <a href="#gallery" class="btn btn-outline-primary mb-2">View Gallery</a>
+                                        </div>
+                                    </div>
+                                    <div class="plot-card shadow-sm rounded overflow-hidden" data-aos="fade-up">
+                                        <img data-src="Images/Gallery/Plots/plot4.png" alt="Featured Plot 2"
+                                            class="img-fluid">
+                                        <div class="plot-card-content p-3">
+                                            <h3 class="h4 mb-2">Time Series Analysis</h3>
+                                            <p class="mb-3">Analyzing trends over time</p>
+                                            <a href="#gallery" class="btn btn-outline-primary mb-2">View Gallery</a>
+                                        </div>
+                                    </div>
+                                    <!-- Add more plot cards as needed -->
+                                </div>
+                            </div>
+                            <button
+                                class="carousel-arrow next btn btn-light rounded-circle position-absolute top-50 end-0 translate-middle-y"
+                                aria-label="Next plot">
+                                <i class="fas fa-chevron-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </section>
+                <section class="featured-maps bg-light">
+                    <div class="container">
+                        <h2 class="text-center"><i class="fas fa-map-marked-alt text-primary me-2"></i>Featured Maps
+                        </h2>
+                        <div class="map-carousel position-relative">
+                            <button
+                                class="carousel-arrow prev btn btn-light rounded-circle position-absolute top-50 start-0 translate-middle-y"
+                                aria-label="Previous map">
+                                <i class="fas fa-chevron-left"></i>
+                            </button>
+                            <div class="map-cards-container">
+                                <div class="map-cards">
+                                    <div class="map-card shadow-sm rounded overflow-hidden" data-aos="fade-up">
+                                        <img data-src="Images/Gallery/Maps/map2.png" alt="Featured Map 1" class="img-fluid">
+                                        <div class="map-card-content p-3">
+                                            <h3 class="h4 mb-2">Geospatial Analysis</h3>
+                                            <p class="mb-3">Mapping environmental data across regions</p>
+                                            <a href="#gallery" class="btn btn-outline-primary mb-2">View Gallery</a>
+                                        </div>
+                                    </div>
+                                    <div class="map-card shadow-sm rounded overflow-hidden" data-aos="fade-up">
+                                        <img data-src="Images/Gallery/Maps/map4.png" alt="Featured Map 2" class="img-fluid">
+                                        <div class="map-card-content p-3">
+                                            <h3 class="h4 mb-2">Urban Development Patterns</h3>
+                                            <p class="mb-3">Analyzing city growth and land use changes</p>
+                                            <a href="#gallery" class="btn btn-outline-primary mb-2">View Gallery</a>
+                                        </div>
+                                    </div>
+                                    <div class="map-card shadow-sm rounded overflow-hidden" data-aos="fade-up">
+                                        <img data-src="Images/Gallery/Maps/map5.png" alt="Featured Map 3" class="img-fluid">
+                                        <div class="map-card-content p-3">
+                                            <h3 class="h4 mb-2">Climate Impact Visualization</h3>
+                                            <p class="mb-3">Illustrating climate change effects on landscapes</p>
+                                            <a href="#gallery" class="btn btn-outline-primary mb-2">View Gallery</a>
+                                        </div>
+                                    </div>
+                                    <div class="map-card shadow-sm rounded overflow-hidden" data-aos="fade-up">
+                                        <img data-src="Images/Gallery/Maps/map6.png" alt="Featured Map 4" class="img-fluid">
+                                        <div class="map-card-content p-3">
+                                            <h3 class="h4 mb-2">Biodiversity Hotspots</h3>
+                                            <p class="mb-3">Mapping areas of high ecological importance</p>
+                                            <a href="#gallery" class="btn btn-outline-primary mb-2">View Gallery</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <button
+                                class="carousel-arrow next btn btn-light rounded-circle position-absolute top-50 end-0 translate-middle-y"
+                                aria-label="Next map">
+                                <i class="fas fa-chevron-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </section>
+
+                <div class="cta-section text-center p-1 bg-blue rounded">
+                    <h2 class="mb-4">Let's Connect</h2>
+                    <p class="mb-4">Interested in collaborating or have a project in mind?</p>
+                    <a href="#contact" class="btn btn-primary btn-lg">Get in Touch</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="page-section">
+            <div class="container">
+                <h2>My Software Projects</h2>
+                <div class="projects-container">
+                    <aside class="projects-sidebar">
+                        <h3>Projects</h3>
+                        <ul>
+                            <li><a href="#datamerger" class="project-link active">DataMerger</a></li>
+                            <li><a href="#headanalyser" class="project-link">HeadAnalyser</a></li>
+                            <li><a href="#kmlcomrade" class="project-link">KMLComrade</a></li>
+
+                            <!-- Add more projects as needed -->
+                        </ul>
+                    </aside>
+
+                    <main class="project-content">
+                        <div id="project-details" class="project-details">
+                            <!-- Project details will be dynamically populated by JavaScript -->
+                        </div>
+                    </main>
+                </div>
+            </div>
+        </section>
+
+        <section id="gallery" class="page-section">
+            <div class="container">
+                <h2>Data Visualization Gallery</h2>
+                <p>This gallery contains examples of the types of plots and maps I have created for various projects.
+                    This gallery shows the types of plots i can make, and the types of maps i can create for people who.
+                    They are in danish due to my work being in Denmark.</p>
+                <h3>Plots</h3>
+                <p>Plots displayed in this gallery are created using Python and using various libraries such as
+                    Matplotlib, Seaborn and plotly. The plots displayed are examples of the types of plots I have
+                    created for various projects.</p>
+                <div id="plot-gallery" class="gallery-grid">
+                    <!-- Plot items will be dynamically added here -->
+                </div>
+
+                <h3>Maps</h3>
+                <p>Maps displayed in this gallery are created using QGIS and Python. They are examples of the types of
+                    maps I have created for various projects.</p>
+                <div id="map-gallery" class="gallery-grid">
+                    <!-- Map items will be dynamically added here -->
+                </div>
+            </div>
+        </section>
+
+        <section id="services" class="page-section">
+            <div class="container">
+                <div class="services-content">
+                    <h2>Services</h2>
+                    <div class="row justify-content-center">
+                        <div class="col-md-5">
+                            <h3>What I Offer</h3>
+                            <ul class="services-list">
+                                <li><i class="fas fa-chart-line"></i> Data Analysis & Visualization</li>
+                                <li><i class="fas fa-map-marked-alt"></i> GIS and Spatial Analysis</li>
+                                <li><i class="fas fa-laptop-code"></i> Custom Software Development</li>
+                                <li><i class="fas fa-tree"></i> Environmental Modeling</li>
+                                <li><i class="fas fa-database"></i> Database Design and Management</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-5">
+                            <h3>My Process</h3>
+                            <ol class="process-list">
+                                <li>Initial Consultation</li>
+                                <li>Project Scoping and Planning</li>
+                                <li>Data Collection and Analysis</li>
+                                <li>Development and Implementation</li>
+                                <li>Testing and Quality Assurance</li>
+                                <li>Delivery and Client Support</li>
+                            </ol>
+                        </div>
+                    </div>
+                    <div class="cta-container">
+                        <a href="#contact" class="btn btn-primary btn-lg">Start a Project</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="page-section">
+            <div class="container">
+                <h2>About Me</h2>
+                <div class="row">
+                    <div class="col-md-4">
+                        <img src="https://via.placeholder.com/300x300" alt="Oliver B. Lund" class="profile-photo">
+                    </div>
+                    <div class="col-md-8">
+                        <h3>Professional Bio</h3>
+                        <p class="bio">
+                            As an Environmental Engineer with a strong background in data science, I bring a unique
+                            perspective to environmental modeling and analysis. My expertise lies in leveraging Python,
+                            QGIS, and custom software development to solve complex environmental challenges. With a
+                            degree from DTU, I combine technical proficiency with a deep understanding of environmental
+                            systems to deliver innovative solutions.
+                        </p>
+                        <h4>Key Achievements</h4>
+                        <ul class="achievements-list">
+                            <li>Developed a machine learning model that improved waste sorting efficiency by 30%</li>
+                            <li>Led a team in creating a city-wide air quality monitoring system</li>
+                            <li>Published research on sustainable urban development in top-tier journals</li>
+                        </ul>
+                        <div class="certifications">
+                            <h4>Certifications</h4>
+                            <ul>
+                                <li>Advanced Python Programming (Placeholder)</li>
+                                <li>GIS Specialist Certification (Placeholder)</li>
+                                <li>Data Science for Environmental Applications (Placeholder)</li>
+                            </ul>
+                        </div>
+
+                        <a href="your-cv.pdf" class="btn btn-primary" target="_blank">Download CV</a>
+                    </div>
+                </div>
+                
+                <!-- Career Timeline -->
+                <h3 class="mt-5">My Career Journey</h3>
+                <div class="timeline">
+                    <div class="timeline-item" data-year="2022">
+                        <h4>Senior Data Scientist</h4>
+                        <p>Led machine learning projects at XYZ Corp.</p>
+                    </div>
+                    <div class="timeline-item" data-year="2020">
+                        <h4>Data Analyst</h4>
+                        <p>Developed data visualization dashboards at ABC Inc.</p>
+                    </div>
+                    <!-- Add more timeline items as needed -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="contact-info">
+                <h3 class="text-white">Contact Me</h3>
+                <p><i class="fas fa-envelope"></i> Oliverlund1@hotmail.com</p>
+                <p><i class="fas fa-phone"></i> (45) 93 60 31 82</p>
+                <p><i class="fas fa-map-marker-alt"></i> Copenhagen, Denmark</p>
+            </div>
+            <div class="social-links">
+                <a href="https://linkedin.com/in/yourprofile" target="_blank"><i class="fab fa-linkedin"></i></a>
+                <a href="https://github.com/yourusername" target="_blank"><i class="fab fa-github"></i></a>
+                <a href="https://twitter.com/yourusername" target="_blank"><i class="fab fa-twitter"></i></a>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2024 Oliver B. Lund. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script src="js/tree-rain-animation.js"></script>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="https://d3js.org/topojson.v3.min.js"></script>
+    <script src="js/particles-config.js" defer></script>
+    <script type="module" src="js/gis-animation.js"></script>
+    <script src="js/navigation.js" defer></script>
+    <script src="js/projects.js" defer></script>
+    <script src="js/gallery.js" defer></script>
+    <script src="js/carousel.js" defer></script>
+    <script src="js/main.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="js/dataViz.js" defer></script>
+</body>
+
+</html>

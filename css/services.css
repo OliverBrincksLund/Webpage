@@ -1,0 +1,71 @@
+#services {
+    padding: 4rem 0;
+    background: transparent; /* Remove the gray background */
+}
+
+.services-content {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center; /* Center the content */
+}
+
+#services h2 {
+    color: var(--primary-color);
+    margin-bottom: 2rem;
+}
+
+.services-list, .process-list {
+    padding-left: 0;
+    list-style-type: none;
+    text-align: left; /* Align list items to the left */
+}
+
+.services-list li, .process-list li {
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+}
+
+.services-list i {
+    margin-right: 0.5rem;
+    color: var(--primary-color);
+    width: 20px;
+    text-align: center;
+}
+
+.process-list {
+    counter-reset: process-counter;
+}
+
+.process-list li {
+    counter-increment: process-counter;
+}
+
+.process-list li::before {
+    content: counter(process-counter);
+    margin-right: 0.5rem;
+    background-color: var(--primary-color);
+    color: white;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+.cta-container {
+    margin-top: 2rem;
+}
+
+@media (max-width: 768px) {
+    .services-list, .process-list {
+        margin-bottom: 2rem;
+    }
+}

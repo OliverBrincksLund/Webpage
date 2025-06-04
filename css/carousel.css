@@ -1,0 +1,157 @@
+.project-carousel,
+.plot-carousel,
+.map-carousel {
+    position: relative;
+    overflow: hidden;
+}
+
+.project-cards-container,
+.plot-cards-container,
+.map-cards-container {
+    overflow-x: scroll;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+}
+
+.project-cards-container::-webkit-scrollbar,
+.plot-cards-container::-webkit-scrollbar,
+.map-cards-container::-webkit-scrollbar {
+    display: none; /* WebKit */
+}
+
+.project-cards,
+.plot-cards,
+.map-cards {
+    display: flex;
+    transition: transform 0.3s ease;
+}
+
+.project-card,
+.plot-card,
+.map-card {
+    flex: 0 0 100%;
+    max-width: 100%;
+    padding: 0 15px;
+    box-sizing: border-box;
+}
+
+.carousel-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+}
+
+.carousel-arrow.prev {
+    left: 10px;
+}
+
+.carousel-arrow.next {
+    right: 10px;
+}
+
+@media (min-width: 768px) {
+    .project-card,
+    .plot-card,
+    .map-card {
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
+}
+
+@media (min-width: 992px) {
+    .project-card,
+    .plot-card,
+    .map-card {
+        flex: 0 0 33.333%;
+        max-width: 33.333%;
+    }
+}
+
+/* Specific heights for each type of card */
+.project-card {
+    height: 600px;
+    
+}
+
+.plot-card {
+    height: 550px; /* Increased height for plot cards */
+}
+
+.map-card {
+    height: 500px;
+}
+
+/* Image sizes for each type of card */
+.project-card img {
+    height: 300px;
+}
+
+.plot-card img {
+    height: 400px; /* Increased height for plot images */
+    width: 100%;
+    object-fit: contain; /* Changed from cover to contain */
+}
+
+.map-card img {
+    height: 350px;
+    width: 100%;
+    object-fit: cover;
+}
+
+.project-card img,
+.plot-card img,
+.map-card img {
+    width: 100%;
+    object-position: center;
+}
+
+.project-card-content,
+.plot-card-content {
+    padding: 1rem;
+}
+
+.carousel-arrow {
+    background-color: rgba(255, 255, 255, 0.9);
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    color: #333; /* Dark text color for visibility */
+}
+
+.carousel-arrow:hover {
+    background-color: rgba(255, 255, 255, 1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .project-card,
+    .plot-card,
+    .map-card {
+        flex: 0 0 calc(100% - 1rem);
+        max-width: calc(100% - 1rem);
+        margin-right: 1rem;
+    }
+}
+
+/* New media query for larger screens */
+@media (min-width: 769px) {
+    .plot-card {
+        flex: 0 0 calc(70% - 2rem);
+        max-width: calc(70% - 2rem);
+    }
+    .map-card {
+        flex: 0 0 calc(50% - 2rem);
+        max-width: calc(50% - 2rem);
+    }
+}

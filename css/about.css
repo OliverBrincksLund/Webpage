@@ -1,0 +1,32 @@
+.profile-photo {
+    width: 100%;
+    max-width: 300px;
+    border-radius: 50%;
+}
+
+.bio {
+    margin-bottom: 1rem;
+    line-height: 1.6;
+}
+
+.certifications {
+    margin-bottom: 1rem;
+}
+
+.certifications ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.certifications li {
+    margin-bottom: 0.5rem;
+    padding-left: 20px;
+    position: relative;
+}
+
+.certifications li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--primary-color);
+}
