@@ -1,4 +1,19 @@
-import { noise } from "./perlin-noise.js";
+// Try to import the noise function, with fallback
+let noise;
+
+try {
+    // Try to import from local module
+    const module = await import("./perlin-noise.js");
+    noise = module.noise;
+} catch (error) {
+    console.warn('Failed to import perlin-noise module:', error);
+    // Fallback: Create a simple noise function
+    noise = function(x, y, z = 0) {
+        // Simple pseudo-random noise function as fallback
+        const seed = x * 12.9898 + y * 78.233 + z * 37.719;
+        return (Math.sin(seed) * 43758.5453123) % 1;
+    };
+}
 
 function initGISAnimation() {
     const canvas = document.getElementById('gis-canvas');
@@ -12,6 +27,8 @@ function initGISAnimation() {
         console.error('Canvas context not available');
         return;
     }
+
+    console.log('GIS Animation starting...');
 
     // Editable values
     const thresholdIncrement = 4;
@@ -35,6 +52,8 @@ function initGISAnimation() {
         canvas.height = rect.height;
         cols = Math.floor(canvas.width / res) + 1;
         rows = Math.floor(canvas.height / res) + 1;
+
+        console.log(`Canvas resized to ${canvas.width}x${canvas.height}, grid: ${cols}x${rows}`);
 
         // Initialize zBoostValues
         zBoostValues = [];
@@ -229,6 +248,7 @@ function initGISAnimation() {
     
     // Start animation after a short delay to ensure everything is loaded
     setTimeout(() => {
+        console.log('Starting GIS animation...');
         animate();
     }, 100);
 
@@ -237,7 +257,7 @@ function initGISAnimation() {
         resizeCanvas();
     });
     
-    console.log('GIS Animation initialized');
+    console.log('GIS Animation initialized successfully');
 }
 
 // Initialize when DOM is loaded
