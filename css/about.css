@@ -1,32 +1,444 @@
+/* =====================================================
+   ABOUT SECTION
+   ===================================================== */
+
+/* Profile photo */
 .profile-photo {
-    width: 100%;
-    max-width: 300px;
-    border-radius: 50%;
+  width: 100%;
+  max-width: 240px;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+  display: block;
+  filter: saturate(0.85) brightness(0.85);
+  transition: filter 0.3s var(--ease);
 }
 
+.profile-photo:hover {
+  filter: saturate(1) brightness(1);
+}
+
+/* Placeholder image styling */
+img[src*="placeholder"] {
+  filter: saturate(0) brightness(0.25) !important;
+  border: 2px dashed var(--border-strong) !important;
+}
+
+/* Bio text */
 .bio {
-    margin-bottom: 1rem;
-    line-height: 1.6;
+  font-size: 0.95rem;
+  line-height: 1.82;
+  color: var(--text-secondary);
+  margin-bottom: 1.5rem;
 }
 
+/* Headings within about */
+#about h3 {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+}
+
+#about h4 {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+
+/* Achievements list */
+.achievements-list {
+  list-style: none;
+  padding: 0;
+  margin: 0.5rem 0 1.5rem;
+}
+
+.achievements-list li {
+  position: relative;
+  padding: 0.5rem 0 0.5rem 1.25rem;
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+  line-height: 1.65;
+  border-bottom: 1px solid var(--border-faint);
+}
+
+.achievements-list li:last-child { border-bottom: none; }
+
+.achievements-list li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  top: 0.5rem;
+  color: var(--gold);
+  font-size: 0.75rem;
+  line-height: 1.65;
+}
+
+/* Certifications box */
 .certifications {
-    margin-bottom: 1rem;
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1.25rem 1.5rem;
+  margin: 1rem 0 1.5rem;
 }
 
 .certifications ul {
-    list-style-type: none;
-    padding-left: 0;
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
-.certifications li {
-    margin-bottom: 0.5rem;
-    padding-left: 20px;
-    position: relative;
+.certifications ul li {
+  position: relative;
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  padding: 0.3rem 0 0.3rem 1rem;
 }
 
-.certifications li::before {
-    content: '✓';
-    position: absolute;
-    left: 0;
-    color: var(--primary-color);
+.certifications ul li::before {
+  content: '·';
+  position: absolute;
+  left: 0;
+  color: var(--gold);
+  font-size: 1rem;
+  line-height: 1.2;
+}
+
+/* Download CV button */
+#about .btn-primary {
+  margin-top: 0.5rem;
+}
+
+/* Career section heading */
+#about > .container > h3.mt-5 {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-top: 4rem !important;
+  margin-bottom: 2rem;
+}
+
+/* =====================================================
+   TIMELINE — Centre line, education LEFT, work RIGHT
+   ===================================================== */
+
+/* Legend */
+.timeline-legend {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.25rem;
+  margin-bottom: 2.5rem;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.legend-item.education { color: var(--teal); }
+.legend-item.work      { color: var(--gold); }
+.legend-item i         { font-size: 0.65rem; }
+
+.legend-divider {
+  width: 1px;
+  height: 14px;
+  background: var(--border);
+}
+
+/* Timeline container */
+.timeline {
+  position: relative;
+  padding: 0.5rem 0 2rem;
+}
+
+/* Centre vertical rule */
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  transform: translateX(-50%);
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    var(--border) 5%,
+    var(--border) 92%,
+    transparent
+  );
+}
+
+/* Row: three columns — content | marker | content */
+.timeline-item {
+  display: grid;
+  grid-template-columns: 1fr 44px 1fr;
+  align-items: center;
+  gap: 0 1.25rem;
+  margin-bottom: 1.5rem;
+  /* override old styles */
+  width: 100% !important;
+  left: auto !important;
+  background: none !important;
+  border: none !important;
+  padding: 0 !important;
+  box-shadow: none !important;
+}
+
+.timeline-item:last-child { margin-bottom: 0; }
+
+/* Empty spacer fills the opposite column */
+.timeline-gap { /* intentionally empty */ }
+
+/* Centre marker circle */
+.timeline-marker {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.82rem;
+  position: relative;
+  z-index: 1;
+  transition: var(--transition);
+  justify-self: center;
+  flex-shrink: 0;
+}
+
+.timeline-item[data-type="education"] .timeline-marker {
+  color: var(--teal);
+  border: 1px solid rgba(56, 168, 152, 0.35);
+  background: rgba(56, 168, 152, 0.08);
+}
+
+.timeline-item[data-type="work"] .timeline-marker {
+  color: var(--gold);
+  border: 1px solid rgba(196, 144, 64, 0.35);
+  background: rgba(196, 144, 64, 0.08);
+}
+
+.timeline-item[data-type="current"] .timeline-marker {
+  color: var(--gold-light);
+  border: 1px solid var(--gold);
+  background: rgba(196, 144, 64, 0.12);
+  box-shadow: 0 0 14px rgba(196, 144, 64, 0.28);
+}
+
+/* Content card */
+.timeline-content {
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1.1rem 1.25rem;
+  transition: var(--transition);
+  min-width: 0;
+}
+
+.timeline-item:hover .timeline-content {
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow-xs);
+}
+
+/* Education: content in col 1 (left), right-aligned text */
+.timeline-item[data-type="education"] .timeline-content {
+  grid-column: 1;
+  text-align: right;
+}
+
+.timeline-item[data-type="education"] .timeline-meta {
+  justify-content: flex-end;
+}
+
+.timeline-item[data-type="education"] .timeline-org {
+  justify-content: flex-end;
+}
+
+/* Work: content in col 3 (right) */
+.timeline-item[data-type="work"]    .timeline-content,
+.timeline-item[data-type="current"] .timeline-content {
+  grid-column: 3;
+}
+
+/* Current entry highlight */
+.timeline-item[data-type="current"] .timeline-content {
+  border-color: rgba(196, 144, 64, 0.28);
+  background: rgba(196, 144, 64, 0.04);
+}
+
+/* Connector lines from card edge to marker */
+.timeline-item[data-type="education"] .timeline-content::after,
+.timeline-item[data-type="work"]      .timeline-content::before,
+.timeline-item[data-type="current"]   .timeline-content::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: 1.25rem;
+  height: 1px;
+  background: var(--border);
+  pointer-events: none;
+}
+
+.timeline-item[data-type="education"] .timeline-content {
+  position: relative;
+}
+.timeline-item[data-type="education"] .timeline-content::after {
+  right: -1.25rem;
+}
+
+.timeline-item[data-type="work"]    .timeline-content,
+.timeline-item[data-type="current"] .timeline-content {
+  position: relative;
+}
+.timeline-item[data-type="work"]    .timeline-content::before,
+.timeline-item[data-type="current"] .timeline-content::before {
+  left: -1.25rem;
+}
+
+/* Meta row */
+.timeline-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin-bottom: 0.45rem;
+}
+
+.timeline-year {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+}
+
+/* Tags */
+.timeline-tag {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 0.13em 0.55em;
+  border-radius: var(--radius-xs);
+}
+
+.timeline-tag.education,
+.timeline-tag.exchange,
+.timeline-tag.thesis {
+  color: var(--teal);
+  background: rgba(56, 168, 152, 0.1);
+  border: 1px solid rgba(56, 168, 152, 0.2);
+}
+
+.timeline-tag.work,
+.timeline-tag.internship,
+.timeline-tag.part-time,
+.timeline-tag.freelance {
+  color: var(--gold);
+  background: rgba(196, 144, 64, 0.1);
+  border: 1px solid rgba(196, 144, 64, 0.2);
+}
+
+.timeline-tag.current {
+  color: var(--gold-light);
+  background: rgba(196, 144, 64, 0.15);
+  border: 1px solid rgba(196, 144, 64, 0.4);
+}
+
+/* Title */
+.timeline-content h4 {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 0.25rem;
+  letter-spacing: 0;
+}
+
+/* Organisation */
+.timeline-org {
+  font-size: 0.76rem;
+  color: var(--text-muted);
+  margin-bottom: 0.4rem;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  line-height: 1.4;
+}
+
+/* Description */
+.timeline-desc {
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  line-height: 1.65;
+  margin: 0;
+}
+
+/* ---- Mobile: collapse to left-aligned single column ---- */
+@media (max-width: 768px) {
+  .timeline::before { left: 18px; transform: none; }
+
+  .timeline-item {
+    grid-template-columns: 38px 1fr;
+    grid-template-rows: auto;
+    gap: 0 1rem;
+  }
+
+  .timeline-gap { display: none; }
+
+  .timeline-marker {
+    width: 38px;
+    height: 38px;
+    font-size: 0.75rem;
+    grid-column: 1;
+    grid-row: 1;
+    align-self: start;
+    margin-top: 0.65rem;
+  }
+
+  .timeline-item[data-type="education"] .timeline-content,
+  .timeline-item[data-type="work"]      .timeline-content,
+  .timeline-item[data-type="current"]   .timeline-content {
+    grid-column: 2;
+    grid-row: 1;
+    text-align: left;
+  }
+
+  .timeline-item[data-type="education"] .timeline-meta,
+  .timeline-item[data-type="education"] .timeline-org {
+    justify-content: flex-start;
+  }
+
+  .timeline-item[data-type="education"] .timeline-content::after,
+  .timeline-item[data-type="work"]      .timeline-content::before,
+  .timeline-item[data-type="current"]   .timeline-content::before {
+    display: none;
+  }
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 768px) {
+  .profile-photo {
+    max-width: 160px;
+    margin-bottom: 1.5rem;
+  }
 }

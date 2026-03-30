@@ -38,7 +38,7 @@
     <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
     
     <!-- Font loading optimization -->
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,900;1,9..144,300&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     
     <!-- Critical CSS should be inlined, loading others with appropriate priority -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
@@ -47,6 +47,8 @@
     
     <!-- Local CSS files -->
     <link href="css/main.css" rel="stylesheet">
+    <!-- Backdrop module (swap this line to test different backdrops) -->
+    <link href="css/backdrops/backdrop-network.css" rel="stylesheet">
     <link href="css/header.css" rel="stylesheet">
     <link href="css/navigation.css" rel="stylesheet">
     <link href="css/projects.css" rel="stylesheet">
@@ -90,51 +92,34 @@
     </script>
     
     <style>
-        /* Critical CSS - inline for performance */
+        /* Critical CSS — inline for fast paint */
+        :root { --nav-height: 60px; }
+        body { background: #0D1018; color: #E2DDD6; }
+        body.loading { opacity: 0; }
+
         #gis-canvas {
-            width: 100%;
-            height: 100%;
-            position: absolute;
-            top: 0;
-            left: 0;
+            width: 100%; height: 100%;
+            position: absolute; top: 0; left: 0;
             background: transparent;
         }
-        
+
         .particle-section {
             position: relative;
-            width: 33.33%;
-            height: 100%;
+            width: 33.33%; height: 100%;
             overflow: hidden;
         }
-        
-        /* Loading state */
-        .loading {
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-        
-        .loaded {
-            opacity: 1;
-        }
-        
-        /* Optimize images */
-        img {
-            max-width: 100%;
-            height: auto;
-        }
-        
-        .lazy-image {
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-        
-        .lazy-image.loaded {
-            opacity: 1;
-        }
+
+        img { max-width: 100%; height: auto; }
+
+        .lazy-image { opacity: 0; transition: opacity 0.35s ease; }
+        .lazy-image.loaded { opacity: 1; }
     </style>
 </head>
 
 <body class="loading">
+    <!-- Backdrop network — swappable visual layer -->
+    <div id="bg-particles" aria-hidden="true"></div>
+
     <!-- Skip to main content for accessibility -->
     <a href="#main" class="sr-only sr-only-focusable">Skip to main content</a>
     
@@ -145,12 +130,17 @@
             </div>
             <div class="particle-section" id="gis-animation" aria-label="GIS geospatial analysis animation">
                 <canvas id="gis-canvas" aria-hidden="true"></canvas>
-                <div class="section-label">GIS & geospatial analysis</div>
                 <div class="header-text">
-                    <h1>Oliver B. Lund</h1>
-                    <p>Data Science & Analytics Projects</p>
+                    <span class="header-eyebrow">Environmental Engineer &middot; Copenhagen, DK</span>
+                    <h1>Oliver<br>B.&nbsp;Lund</h1>
+                    <p class="header-subtitle">Data Science &amp; Software Development</p>
                     <p class="tagline">Transforming complex data into actionable insights</p>
+                    <div class="header-cta">
+                        <a href="#projects" class="btn btn-gold">View Projects</a>
+                        <a href="#about" class="btn btn-outline">About Me</a>
+                    </div>
                 </div>
+                <div class="section-label">GIS &amp; geospatial analysis</div>
             </div>
             <div class="particle-section" id="earth-animation" aria-label="Software development animation">
                 <canvas id="treeCanvas" aria-hidden="true"></canvas>
@@ -158,9 +148,14 @@
                 <div class="section-label">Software development</div>
             </div>
         </div>
+        <div class="scroll-indicator" aria-hidden="true">
+            <span>Scroll</span>
+            <div class="scroll-line"></div>
+        </div>
     </header>
 
     <nav class="navbar" role="navigation" aria-label="Main navigation">
+        <a href="#home" class="nav-brand" aria-label="Oliver B. Lund — Home">OBL</a>
         <ul class="nav-list">
             <li class="nav-item"><a href="#home" class="nav-link active" aria-current="page">Home</a></li>
             <li class="nav-item"><a href="#projects" class="nav-link">Software projects</a></li>
@@ -172,337 +167,129 @@
     </nav>
 
     <main id="main" role="main">
-        <section id="home" class="page-section active">
+        <section id="home" class="page-section">
             <div class="container">
-                <header>
-                    <h1>Welcome to My Data Science Portfolio</h1>
-                    <p class="intro">Explore my journey through data science and analytics projects.</p>
-                </header>
-
-                <div class="expertise-section mb-5 bg-light p-4 rounded">
-                    <h2>My Expertise</h2>
-                    <p class="text-center mb-4">With a strong background in statistics and programming, I specialize in
-                        turning complex data into actionable insights. My approach combines rigorous analysis with
-                        creative problem-solving to deliver tailored solutions for businesses and researchers alike.</p>
-
-                    <div class="row">
-                        <div class="col-md-4 mb-4">
-                            <article class="specialty-card h-100 p-3 bg-white rounded shadow-sm">
-                                <h3><i class="fas fa-database me-2" aria-hidden="true"></i>Data Science and Analytics</h3>
-                                <p>Expertise in handling large datasets, performing complex data operations such as
-                                    filtering and merging, and creating insightful visualizations. Proficient in working
-                                    with both local files and databases to extract meaningful insights.</p>
-                            </article>
-                        </div>
-                        <div class="col-md-4 mb-4">
-                            <article class="specialty-card h-100 p-3 bg-white rounded shadow-sm">
-                                <h3><i class="fas fa-map-marked-alt me-2" aria-hidden="true"></i>Automated Map Creation</h3>
-                                <p>Specialized in creating maps with spatial data, with a focus on automating the map
-                                    creation process. Using Python within QGIS to efficiently produce multiple
-                                    high-quality maps, streamlining geospatial analysis and visualization.</p>
-                            </article>
-                        </div>
-                        <div class="col-md-4 mb-4">
-                            <article class="specialty-card h-100 p-3 bg-white rounded shadow-sm">
-                                <h3><i class="fas fa-laptop-code me-2" aria-hidden="true"></i>Custom Software Development</h3>
-                                <p>Proficient in creating bespoke software solutions using Python. Experienced in
-                                    developing both backend and frontend components with libraries like Tkinter and
-                                    PyQt, delivering user-friendly applications for data analysis and visualization.</p>
-                            </article>
-                        </div>
+                <div class="section-intro">
+                    <div class="section-header">
+                        <span class="section-num">01 / Portfolio</span>
+                        <h2>Data Science &amp; Software Development</h2>
+                        <div class="section-rule"></div>
                     </div>
-                    
-                    <section class="expertise-section">
-                        <h2>Areas of Expertise</h2>
-                        
-                        <article class="expertise-item row align-items-center mb-5">
-                            <div class="col-md-6 order-md-2">
-                                <img src="Images/Gallery/Plots/plot1.png" alt="Data Science visualization example showing statistical analysis" class="img-fluid rounded lazy-image" loading="lazy">
-                            </div>
-                            <div class="col-md-6 order-md-1">
-                                <h3>Data Science</h3>
-                                <p>Leveraging advanced analytics and machine learning to extract insights from complex datasets. Proficient in Python, R, and various data visualization tools.</p>
-                                <ul class="list-unstyled">
-                                    <li><i class="fas fa-check-circle" aria-hidden="true"></i> Statistical Analysis</li>
-                                    <li><i class="fas fa-check-circle" aria-hidden="true"></i> Machine Learning</li>
-                                    <li><i class="fas fa-check-circle" aria-hidden="true"></i> Data Visualization</li>
-                                </ul>
-                            </div>
-                        </article>
-            
-                        <article class="expertise-item row align-items-center mb-5">
-                            <div class="col-md-6">
-                                <img src="https://via.placeholder.com/400x300?text=GIS+Analysis" alt="GIS spatial analysis example" class="img-fluid rounded lazy-image" loading="lazy">
-                            </div>
-                            <div class="col-md-6">
-                                <h3>GIS</h3>
-                                <p>Expertise in spatial analysis and cartography using advanced GIS tools. Creating insightful maps and conducting geospatial analysis for environmental projects.</p>
-                                <ul class="list-unstyled">
-                                    <li><i class="fas fa-check-circle" aria-hidden="true"></i> Spatial Analysis</li>
-                                    <li><i class="fas fa-check-circle" aria-hidden="true"></i> Cartography</li>
-                                    <li><i class="fas fa-check-circle" aria-hidden="true"></i> Remote Sensing</li>
-                                </ul>
-                            </div>
-                        </article>
-            
-                        <article class="expertise-item row align-items-center mb-5">
-                            <div class="col-md-6 order-md-2">
-                                <img src="https://via.placeholder.com/400x300?text=Software+Development" alt="Software development illustration" class="img-fluid rounded lazy-image" loading="lazy">
-                            </div>
-                            <div class="col-md-6 order-md-1">
-                                <h3>Software Development</h3>
-                                <p>Developing custom software solutions for environmental and data analysis needs. Proficient in multiple programming languages and software design principles.</p>
-                                <ul class="list-unstyled">
-                                    <li><i class="fas fa-check-circle" aria-hidden="true"></i> Python Development</li>
-                                    <li><i class="fas fa-check-circle" aria-hidden="true"></i> API Integration</li>
-                                    <li><i class="fas fa-check-circle" aria-hidden="true"></i> Database Management</li>
-                                </ul>
-                            </div>
-                        </article>
-            
-                        <article class="expertise-item row align-items-center">
-                            <div class="col-md-6">
-                                <img src="https://via.placeholder.com/400x300?text=Web+Development" alt="Web development example" class="img-fluid rounded lazy-image" loading="lazy">
-                            </div>
-                            <div class="col-md-6">
-                                <h3>Web Development</h3>
-                                <p>Creating responsive and interactive web applications. Skilled in front-end and back-end technologies to build comprehensive web solutions.</p>
-                                <ul class="list-unstyled">
-                                    <li><i class="fas fa-check-circle" aria-hidden="true"></i> HTML/CSS/JavaScript</li>
-                                    <li><i class="fas fa-check-circle" aria-hidden="true"></i> Responsive Design</li>
-                                    <li><i class="fas fa-check-circle" aria-hidden="true"></i> Web Application Development</li>
-                                </ul>
-                            </div>
-                        </article>
-                    </section>
+                    <p class="intro">Environmental engineer combining rigorous data science with custom software solutions. Explore projects spanning GIS analysis, machine learning, and purpose-built applications.</p>
                 </div>
 
-                <section class="featured-projects bg-light" aria-labelledby="featured-projects-heading">
-                    <div class="container">
-                        <h2 id="featured-projects-heading"><i class="fas fa-star text-primary me-2" aria-hidden="true"></i>Featured Software Projects</h2>
-                        <div class="project-carousel position-relative" role="region" aria-label="Featured projects carousel">
-                            <button
-                                class="carousel-arrow prev btn btn-light rounded-circle position-absolute top-50 start-0 translate-middle-y"
-                                aria-label="Previous project"
-                                type="button">
-                                <i class="fas fa-chevron-left" aria-hidden="true"></i>
-                            </button>
-                            <div class="project-cards-container">
-                                <div class="project-cards">
-                                    <article class="project-card shadow-sm rounded overflow-hidden" data-aos="fade-up">
-                                        <img data-src="Images/DataMerger/DataMerger.jpg" alt="DataMerger application interface" class="img-fluid lazy-image" loading="lazy">
-                                        <div class="project-card-content p-3">
-                                            <h3>DataMerger</h3>
-                                            <p>Efficient tool for various data related tasks.
-                                                Load either local files or from locally hosted SQL database.
-                                                Allows for many filtering options, including spatial filters with
-                                                in-built map for spatial data.
-                                                Statistics and plots are also available.</p>
-                                            <a href="#projects" class="btn btn-outline-primary mb-2"
-                                                data-project="datamerger">Learn More</a>
-                                            <div class="project-tags">
-                                                <span class="tag badge bg-light text-dark me-1">Python</span>
-                                                <span class="tag badge bg-light text-dark">Pandas</span>
-                                                <span class="tag badge bg-light text-dark">SQL</span>
-                                                <span class="tag badge bg-light text-dark">PyQt6</span>
-                                            </div>
-                                        </div>
-                                    </article>
-                                    <article class="project-card shadow-sm rounded overflow-hidden" data-aos="fade-up">
-                                        <img data-src="https://via.placeholder.com/400x300?text=HeadAnalyser" alt="HeadAnalyser application interface" class="img-fluid lazy-image" loading="lazy">
-                                        <div class="project-card-content p-3">
-                                            <h3>HeadAnalyser</h3>
-                                            <p>Advanced tool for analyzing head movements</p>
-                                            <a href="#projects" class="btn btn-outline-primary mb-2"
-                                                data-project="headanalyser">Learn More</a>
-                                            <div class="project-tags">
-                                                <span class="tag badge bg-light text-dark me-1">Python</span>
-                                                <span class="tag badge bg-light text-dark me-1">OpenCV</span>
-                                                <span class="tag badge bg-light text-dark">TensorFlow</span>
-                                            </div>
-                                        </div>
-                                    </article>
-                                    <article class="project-card shadow-sm rounded overflow-hidden" data-aos="fade-up">
-                                        <img data-src="https://via.placeholder.com/400x300?text=KMLComrade" alt="KMLComrade application interface" class="img-fluid lazy-image" loading="lazy">
-                                        <div class="project-card-content p-3">
-                                            <h3>KMLComrade</h3>
-                                            <p>Environmental monitoring and data analysis platform</p>
-                                            <a href="#projects" class="btn btn-outline-primary mb-2"
-                                                data-project="kmlcomrade">Learn More</a>
-                                            <div class="project-tags">
-                                                <span class="tag badge bg-light text-dark me-1">Python</span>
-                                                <span class="tag badge bg-light text-dark me-1">KML</span>
-                                                <span class="tag badge bg-light text-dark">GIS</span>
-                                            </div>
-                                        </div>
-                                    </article>
-                                    <article class="project-card shadow-sm rounded overflow-hidden" data-aos="fade-up">
-                                        <img data-src="https://via.placeholder.com/400x300?text=ClimateViz" alt="ClimateViz application interface" class="img-fluid lazy-image" loading="lazy">
-                                        <div class="project-card-content p-3">
-                                            <h3>ClimateViz</h3>
-                                            <p>Interactive climate data visualization tool</p>
-                                            <a href="#projects" class="btn btn-outline-primary mb-2"
-                                                data-project="climateviz">Learn More</a>
-                                            <div class="project-tags">
-                                                <span class="tag badge bg-light text-dark me-1">D3.js</span>
-                                                <span class="tag badge bg-light text-dark me-1">React</span>
-                                                <span class="tag badge bg-light text-dark">Python</span>
-                                            </div>
-                                        </div>
-                                    </article>
-                                    <article class="project-card shadow-sm rounded overflow-hidden" data-aos="fade-up">
-                                        <img data-src="https://via.placeholder.com/400x300?text=BiodiverSim" alt="BiodiverSim application interface" class="img-fluid lazy-image" loading="lazy">
-                                        <div class="project-card-content p-3">
-                                            <h3>BiodiverSim</h3>
-                                            <p>Biodiversity simulation and prediction model</p>
-                                            <a href="#projects" class="btn btn-outline-primary mb-2"
-                                                data-project="biodiversim">Learn More</a>
-                                            <div class="project-tags">
-                                                <span class="tag badge bg-light text-dark me-1">Python</span>
-                                                <span class="tag badge bg-light text-dark me-1">SciPy</span>
-                                                <span class="tag badge bg-light text-dark">Matplotlib</span>
-                                            </div>
-                                        </div>
-                                    </article>
-                                </div>
-                            </div>
-                            <button
-                                class="carousel-arrow next btn btn-light rounded-circle position-absolute top-50 end-0 translate-middle-y"
-                                aria-label="Next project"
-                                type="button">
-                                <i class="fas fa-chevron-right" aria-hidden="true"></i>
-                            </button>
+                <!-- ── Expertise Pillars ──────────────────────────────── -->
+                <div class="expertise-pillars">
+                    <article class="pillar-card" data-aos="fade-up" data-aos-delay="0">
+                        <span class="pillar-num">01</span>
+                        <div class="pillar-icon"><i class="fas fa-brain" aria-hidden="true"></i></div>
+                        <h3>Data Science</h3>
+                        <p>Statistical modelling, ML pipelines, and interactive visualisations built from complex real-world datasets.</p>
+                        <ul class="pillar-skills">
+                            <li>Statistical Modelling</li>
+                            <li>Machine Learning</li>
+                            <li>Data Visualisation</li>
+                            <li>Time Series Analysis</li>
+                        </ul>
+                    </article>
+                    <article class="pillar-card" data-aos="fade-up" data-aos-delay="60">
+                        <span class="pillar-num">02</span>
+                        <div class="pillar-icon pillar-icon--teal"><i class="fas fa-map-marked-alt" aria-hidden="true"></i></div>
+                        <h3>GIS &amp; Spatial Analysis</h3>
+                        <p>End-to-end geospatial workflows: from raw sensor data to automated multi-format map production at scale.</p>
+                        <ul class="pillar-skills">
+                            <li>Spatial Analysis</li>
+                            <li>Cartography</li>
+                            <li>Remote Sensing</li>
+                            <li>QGIS Automation</li>
+                        </ul>
+                    </article>
+                    <article class="pillar-card" data-aos="fade-up" data-aos-delay="120">
+                        <span class="pillar-num">03</span>
+                        <div class="pillar-icon"><i class="fas fa-laptop-code" aria-hidden="true"></i></div>
+                        <h3>Software Development</h3>
+                        <p>Bespoke desktop and web applications — from data-centric GUIs to full pipeline automation tools.</p>
+                        <ul class="pillar-skills">
+                            <li>Python &amp; PyQt</li>
+                            <li>API Integration</li>
+                            <li>Database Design</li>
+                            <li>CLI Tooling</li>
+                        </ul>
+                    </article>
+                    <article class="pillar-card" data-aos="fade-up" data-aos-delay="180">
+                        <span class="pillar-num">04</span>
+                        <div class="pillar-icon pillar-icon--teal"><i class="fas fa-leaf" aria-hidden="true"></i></div>
+                        <h3>Environmental Engineering</h3>
+                        <p>Domain expertise in environmental systems, hydrology, and regulatory data — bridging science and software.</p>
+                        <ul class="pillar-skills">
+                            <li>Hydrological Modelling</li>
+                            <li>Environmental Monitoring</li>
+                            <li>Impact Assessment</li>
+                            <li>Sensor Data Processing</li>
+                        </ul>
+                    </article>
+                </div>
+
+                <!-- ── Stats Bar ──────────────────────────────────────── -->
+                <div class="home-stats" data-aos="fade-up" data-aos-delay="80">
+                    <div class="stat-item">
+                        <span class="stat-num">9+</span>
+                        <span class="stat-label">Years in the Field</span>
+                    </div>
+                    <div class="stat-divider"></div>
+                    <div class="stat-item">
+                        <span class="stat-num">20+</span>
+                        <span class="stat-label">Projects Delivered</span>
+                    </div>
+                    <div class="stat-divider"></div>
+                    <div class="stat-item">
+                        <span class="stat-num">MSc</span>
+                        <span class="stat-label">Environmental Eng. (DTU)</span>
+                    </div>
+                    <div class="stat-divider"></div>
+                    <div class="stat-item">
+                        <span class="stat-num">3</span>
+                        <span class="stat-label">Core Disciplines</span>
+                    </div>
+                </div>
+
+                <!-- ── Tech Stack Visualization ───────────────────────── -->
+                <div class="skills-viz-block" data-aos="fade-up" data-aos-delay="100">
+                    <div class="skills-viz-header">
+                        <span class="section-num" style="margin-bottom:0">Technical Stack</span>
+                        <div class="skills-legend">
+                            <span class="skills-legend-item">
+                                <span class="skills-legend-dot skills-legend-dot--gold"></span>Data &amp; ML
+                            </span>
+                            <span class="skills-legend-item">
+                                <span class="skills-legend-dot skills-legend-dot--teal"></span>Spatial &amp; GIS
+                            </span>
+                            <span class="skills-legend-item">
+                                <span class="skills-legend-dot skills-legend-dot--dev"></span>Dev Tools
+                            </span>
                         </div>
                     </div>
-                </section>
+                    <div id="skills-chart" role="img" aria-label="Interactive bubble chart of technical skills"></div>
+                </div>
 
-                <section class="featured-plots bg-light" aria-labelledby="featured-plots-heading">
-                    <div class="container">
-                        <h2 id="featured-plots-heading"><i class="fas fa-chart-line text-primary me-2" aria-hidden="true"></i>Featured Plots</h2>
-                        <div class="plot-carousel position-relative" role="region" aria-label="Featured plots carousel">
-                            <button
-                                class="carousel-arrow prev btn btn-light rounded-circle position-absolute top-50 start-0 translate-middle-y"
-                                aria-label="Previous plot"
-                                type="button">
-                                <i class="fas fa-chevron-left" aria-hidden="true"></i>
-                            </button>
-                            <div class="plot-cards-container">
-                                <div class="plot-cards">
-                                    <article class="plot-card shadow-sm rounded overflow-hidden" data-aos="fade-up">
-                                        <img data-src="Images/Gallery/Plots/plot1.png" alt="Data distribution analysis visualization"
-                                            class="img-fluid lazy-image" loading="lazy">
-                                        <div class="plot-card-content p-3">
-                                            <h3>Data Distribution Analysis</h3>
-                                            <p>Visualizing complex data distributions</p>
-                                            <a href="#gallery" class="btn btn-outline-primary mb-2">View Gallery</a>
-                                        </div>
-                                    </article>
-                                    <article class="plot-card shadow-sm rounded overflow-hidden" data-aos="fade-up">
-                                        <img data-src="Images/Gallery/Plots/plot2.png" alt="Time series analysis visualization"
-                                            class="img-fluid lazy-image" loading="lazy">
-                                        <div class="plot-card-content p-3">
-                                            <h3>Time Series Analysis</h3>
-                                            <p>Analyzing trends over time</p>
-                                            <a href="#gallery" class="btn btn-outline-primary mb-2">View Gallery</a>
-                                        </div>
-                                    </article>
-                                    <article class="plot-card shadow-sm rounded overflow-hidden" data-aos="fade-up">
-                                        <img data-src="Images/Gallery/Plots/plot3.png" alt="Statistical correlation analysis"
-                                            class="img-fluid lazy-image" loading="lazy">
-                                        <div class="plot-card-content p-3">
-                                            <h3>Correlation Analysis</h3>
-                                            <p>Exploring relationships between variables</p>
-                                            <a href="#gallery" class="btn btn-outline-primary mb-2">View Gallery</a>
-                                        </div>
-                                    </article>
-                                    <article class="plot-card shadow-sm rounded overflow-hidden" data-aos="fade-up">
-                                        <img data-src="Images/Gallery/Plots/plot4.png" alt="Predictive modeling visualization"
-                                            class="img-fluid lazy-image" loading="lazy">
-                                        <div class="plot-card-content p-3">
-                                            <h3>Predictive Modeling</h3>
-                                            <p>Machine learning model performance</p>
-                                            <a href="#gallery" class="btn btn-outline-primary mb-2">View Gallery</a>
-                                        </div>
-                                    </article>
-                                </div>
-                            </div>
-                            <button
-                                class="carousel-arrow next btn btn-light rounded-circle position-absolute top-50 end-0 translate-middle-y"
-                                aria-label="Next plot"
-                                type="button">
-                                <i class="fas fa-chevron-right" aria-hidden="true"></i>
-                            </button>
-                        </div>
+                <!-- ── CTA ────────────────────────────────────────────── -->
+                <div class="home-cta" data-aos="fade-up">
+                    <div class="home-cta-text">
+                        <h2>Let's work together</h2>
+                        <p>Have a project in mind or want to discuss a collaboration? Available for freelance engagements.</p>
                     </div>
-                </section>
-
-                <section class="featured-maps bg-light" aria-labelledby="featured-maps-heading">
-                    <div class="container">
-                        <h2 id="featured-maps-heading"><i class="fas fa-map-marked-alt text-primary me-2" aria-hidden="true"></i>Featured Maps</h2>
-                        <div class="map-carousel position-relative" role="region" aria-label="Featured maps carousel">
-                            <button
-                                class="carousel-arrow prev btn btn-light rounded-circle position-absolute top-50 start-0 translate-middle-y"
-                                aria-label="Previous map"
-                                type="button">
-                                <i class="fas fa-chevron-left" aria-hidden="true"></i>
-                            </button>
-                            <div class="map-cards-container">
-                                <div class="map-cards">
-                                    <article class="map-card shadow-sm rounded overflow-hidden" data-aos="fade-up">
-                                        <img data-src="Images/Gallery/Maps/map2.png" alt="Geospatial environmental data analysis map" class="img-fluid lazy-image" loading="lazy">
-                                        <div class="map-card-content p-3">
-                                            <h3>Geospatial Analysis</h3>
-                                            <p>Mapping environmental data across regions</p>
-                                            <a href="#gallery" class="btn btn-outline-primary mb-2">View Gallery</a>
-                                        </div>
-                                    </article>
-                                    <article class="map-card shadow-sm rounded overflow-hidden" data-aos="fade-up">
-                                        <img data-src="Images/Gallery/Maps/map4.png" alt="Urban development patterns analysis map" class="img-fluid lazy-image" loading="lazy">
-                                        <div class="map-card-content p-3">
-                                            <h3>Urban Development Patterns</h3>
-                                            <p>Analyzing city growth and land use changes</p>
-                                            <a href="#gallery" class="btn btn-outline-primary mb-2">View Gallery</a>
-                                        </div>
-                                    </article>
-                                    <article class="map-card shadow-sm rounded overflow-hidden" data-aos="fade-up">
-                                        <img data-src="Images/Gallery/Maps/map5.png" alt="Climate impact visualization map" class="img-fluid lazy-image" loading="lazy">
-                                        <div class="map-card-content p-3">
-                                            <h3>Climate Impact Visualization</h3>
-                                            <p>Illustrating climate change effects on landscapes</p>
-                                            <a href="#gallery" class="btn btn-outline-primary mb-2">View Gallery</a>
-                                        </div>
-                                    </article>
-                                    <article class="map-card shadow-sm rounded overflow-hidden" data-aos="fade-up">
-                                        <img data-src="Images/Gallery/Maps/map6.png" alt="Biodiversity hotspots mapping" class="img-fluid lazy-image" loading="lazy">
-                                        <div class="map-card-content p-3">
-                                            <h3>Biodiversity Hotspots</h3>
-                                            <p>Mapping areas of high ecological importance</p>
-                                            <a href="#gallery" class="btn btn-outline-primary mb-2">View Gallery</a>
-                                        </div>
-                                    </article>
-                                </div>
-                            </div>
-                            <button
-                                class="carousel-arrow next btn btn-light rounded-circle position-absolute top-50 end-0 translate-middle-y"
-                                aria-label="Next map"
-                                type="button">
-                                <i class="fas fa-chevron-right" aria-hidden="true"></i>
-                            </button>
-                        </div>
-                    </div>
-                </section>
-
-                <section class="cta-section text-center p-1 bg-blue rounded" aria-labelledby="cta-heading">
-                    <h2 id="cta-heading">Let's Connect</h2>
-                    <p>Interested in collaborating or have a project in mind?</p>
-                    <a href="#contact" class="btn btn-primary btn-lg">Get in Touch</a>
-                </section>
+                    <a href="#contact" class="btn btn-gold btn-lg">Get in Touch</a>
+                </div>
             </div>
         </section>
 
         <section id="projects" class="page-section">
             <div class="container">
-                <h2>My Software Projects</h2>
+                <div class="section-header">
+                    <span class="section-num">02 / Projects</span>
+                    <h2>Software Projects</h2>
+                    <div class="section-rule"></div>
+                </div>
                 <div class="projects-container">
                     <aside class="projects-sidebar">
                         <h3>Projects</h3>
@@ -524,21 +311,20 @@
 
         <section id="gallery" class="page-section">
             <div class="container">
-                <h2>Data Visualization Gallery</h2>
-                <p>This gallery contains examples of the types of plots and maps I have created for various projects.
-                    This gallery shows the types of plots i can make, and the types of maps i can create for people who.
-                    They are in danish due to my work being in Denmark.</p>
+                <div class="section-header">
+                    <span class="section-num">03 / Gallery</span>
+                    <h2>Data Visualization Gallery</h2>
+                    <div class="section-rule"></div>
+                </div>
+                <p>A selection of plots and maps produced for real-world environmental projects. Most outputs are in Danish, reflecting the geographic scope of the work.</p>
                 <h3>Plots</h3>
-                <p>Plots displayed in this gallery are created using Python and using various libraries such as
-                    Matplotlib, Seaborn and plotly. The plots displayed are examples of the types of plots I have
-                    created for various projects.</p>
+                <p>Created with Python — Matplotlib, Seaborn, and Plotly. Each plot was built for a specific analytical purpose, from distribution analysis to time series modelling.</p>
                 <div id="plot-gallery" class="gallery-grid">
                     <!-- Plot items will be dynamically added here -->
                 </div>
 
                 <h3>Maps</h3>
-                <p>Maps displayed in this gallery are created using QGIS and Python. They are examples of the types of
-                    maps I have created for various projects.</p>
+                <p>Produced with QGIS and Python. Covers spatial analysis, geospatial data visualisation, and automated multi-format map production across a range of environmental projects.</p>
                 <div id="map-gallery" class="gallery-grid">
                     <!-- Map items will be dynamically added here -->
                 </div>
@@ -548,7 +334,11 @@
         <section id="services" class="page-section">
             <div class="container">
                 <div class="services-content">
-                    <h2>Services</h2>
+                    <div class="section-header">
+                        <span class="section-num">04 / Services</span>
+                        <h2>Services</h2>
+                        <div class="section-rule"></div>
+                    </div>
                     <div class="row justify-content-center">
                         <div class="col-md-5">
                             <h3>What I Offer</h3>
@@ -581,7 +371,11 @@
 
         <section id="about" class="page-section">
             <div class="container">
-                <h2>About Me</h2>
+                <div class="section-header">
+                    <span class="section-num">05 / About</span>
+                    <h2>About Me</h2>
+                    <div class="section-rule"></div>
+                </div>
                 <div class="row">
                     <div class="col-md-4">
                         <img src="https://via.placeholder.com/300x300?text=Oliver+B.+Lund" alt="Oliver B. Lund professional photo" class="profile-photo lazy-image" loading="lazy">
@@ -615,26 +409,203 @@
                 </div>
                 
                 <!-- Career Timeline -->
-                <h3 class="mt-5">My Career Journey</h3>
+                <h3 class="mt-5">Career Journey</h3>
+                <div class="timeline-legend">
+                    <span class="legend-item education"><i class="fas fa-graduation-cap"></i> Education</span>
+                    <span class="legend-divider"></span>
+                    <span class="legend-item work"><i class="fas fa-briefcase"></i> Experience</span>
+                </div>
                 <div class="timeline">
-                    <div class="timeline-item" data-year="2022">
-                        <h4>Senior Data Scientist</h4>
-                        <p>Led machine learning projects at XYZ Corp.</p>
+
+                    <!-- 2015 — Education LEFT -->
+                    <div class="timeline-item" data-type="education">
+                        <div class="timeline-content">
+                            <div class="timeline-meta"><span class="timeline-year">2015</span><span class="timeline-tag education">Education</span></div>
+                            <h4>HTX — Technical Gymnasium</h4>
+                            <p class="timeline-org">Copenhagen, Denmark</p>
+                            <p class="timeline-desc">Technical upper secondary programme with focus on mathematics, physics, and IT systems.</p>
+                        </div>
+                        <div class="timeline-marker"><i class="fas fa-school" aria-hidden="true"></i></div>
+                        <div class="timeline-gap"></div>
                     </div>
-                    <div class="timeline-item" data-year="2020">
-                        <h4>Data Analyst</h4>
-                        <p>Developed data visualization dashboards at ABC Inc.</p>
+
+                    <!-- 2016 — Work RIGHT -->
+                    <div class="timeline-item" data-type="work">
+                        <div class="timeline-gap"></div>
+                        <div class="timeline-marker"><i class="fas fa-flask" aria-hidden="true"></i></div>
+                        <div class="timeline-content">
+                            <div class="timeline-meta"><span class="timeline-year">2016</span><span class="timeline-tag work">Part-time</span></div>
+                            <h4>Student Research Assistant</h4>
+                            <p class="timeline-org">[University / Lab Placeholder] — Copenhagen</p>
+                            <p class="timeline-desc">Supported research in environmental data collection and preliminary statistical analysis.</p>
+                        </div>
                     </div>
-                    <!-- Add more timeline items as needed -->
+
+                    <!-- 2017 — Education LEFT -->
+                    <div class="timeline-item" data-type="education">
+                        <div class="timeline-content">
+                            <div class="timeline-meta"><span class="timeline-year">2017</span><span class="timeline-tag education">Education</span></div>
+                            <h4>BSc Environmental Engineering</h4>
+                            <p class="timeline-org">Technical University of Denmark (DTU) — Copenhagen</p>
+                            <p class="timeline-desc">Foundation in environmental systems, hydrology, computational methods, and applied mathematics.</p>
+                        </div>
+                        <div class="timeline-marker"><i class="fas fa-graduation-cap" aria-hidden="true"></i></div>
+                        <div class="timeline-gap"></div>
+                    </div>
+
+                    <!-- 2018 — Work RIGHT -->
+                    <div class="timeline-item" data-type="work">
+                        <div class="timeline-gap"></div>
+                        <div class="timeline-marker"><i class="fas fa-briefcase" aria-hidden="true"></i></div>
+                        <div class="timeline-content">
+                            <div class="timeline-meta"><span class="timeline-year">2018</span><span class="timeline-tag work">Internship</span></div>
+                            <h4>Environmental Data Analyst Intern</h4>
+                            <p class="timeline-org">[Company Placeholder] — Copenhagen</p>
+                            <p class="timeline-desc">Processed environmental monitoring datasets, built automated reporting pipelines, and created geospatial visualisations in Python and QGIS.</p>
+                        </div>
+                    </div>
+
+                    <!-- 2018 — Education LEFT -->
+                    <div class="timeline-item" data-type="education">
+                        <div class="timeline-content">
+                            <div class="timeline-meta"><span class="timeline-year">2018</span><span class="timeline-tag education">Exchange</span></div>
+                            <h4>Exchange Semester</h4>
+                            <p class="timeline-org">[Partner University Placeholder] — Europe</p>
+                            <p class="timeline-desc">Semester abroad focusing on advanced GIS methods and environmental remote sensing.</p>
+                        </div>
+                        <div class="timeline-marker"><i class="fas fa-globe" aria-hidden="true"></i></div>
+                        <div class="timeline-gap"></div>
+                    </div>
+
+                    <!-- 2019 — Work RIGHT -->
+                    <div class="timeline-item" data-type="work">
+                        <div class="timeline-gap"></div>
+                        <div class="timeline-marker"><i class="fas fa-map-marked-alt" aria-hidden="true"></i></div>
+                        <div class="timeline-content">
+                            <div class="timeline-meta"><span class="timeline-year">2019</span><span class="timeline-tag work">Part-time</span></div>
+                            <h4>Junior GIS Analyst</h4>
+                            <p class="timeline-org">[Company Placeholder] — Copenhagen</p>
+                            <p class="timeline-desc">Produced spatial analysis reports and automated map generation workflows using Python scripting within QGIS.</p>
+                        </div>
+                    </div>
+
+                    <!-- 2020 — Education LEFT -->
+                    <div class="timeline-item" data-type="education">
+                        <div class="timeline-content">
+                            <div class="timeline-meta"><span class="timeline-year">2020</span><span class="timeline-tag education">Education</span></div>
+                            <h4>MSc Environmental Engineering</h4>
+                            <p class="timeline-org">Technical University of Denmark (DTU) — Copenhagen</p>
+                            <p class="timeline-desc">Specialisation in data-driven environmental modelling, machine learning applications, and GIS-based spatial analysis.</p>
+                        </div>
+                        <div class="timeline-marker"><i class="fas fa-graduation-cap" aria-hidden="true"></i></div>
+                        <div class="timeline-gap"></div>
+                    </div>
+
+                    <!-- 2020 — Work RIGHT -->
+                    <div class="timeline-item" data-type="work">
+                        <div class="timeline-gap"></div>
+                        <div class="timeline-marker"><i class="fas fa-database" aria-hidden="true"></i></div>
+                        <div class="timeline-content">
+                            <div class="timeline-meta"><span class="timeline-year">2020</span><span class="timeline-tag work">Part-time</span></div>
+                            <h4>Data Analyst</h4>
+                            <p class="timeline-org">[Company Placeholder] — Copenhagen</p>
+                            <p class="timeline-desc">Built interactive dashboards and statistical analysis pipelines for environmental project reporting.</p>
+                        </div>
+                    </div>
+
+                    <!-- 2021 — Education LEFT -->
+                    <div class="timeline-item" data-type="education">
+                        <div class="timeline-content">
+                            <div class="timeline-meta"><span class="timeline-year">2021</span><span class="timeline-tag education">Thesis</span></div>
+                            <h4>MSc Thesis — ML for Environmental Monitoring</h4>
+                            <p class="timeline-org">DTU — Copenhagen</p>
+                            <p class="timeline-desc">Research into applying machine learning models for real-time environmental sensor data classification and anomaly detection.</p>
+                        </div>
+                        <div class="timeline-marker"><i class="fas fa-microscope" aria-hidden="true"></i></div>
+                        <div class="timeline-gap"></div>
+                    </div>
+
+                    <!-- 2021 — Work RIGHT -->
+                    <div class="timeline-item" data-type="work">
+                        <div class="timeline-gap"></div>
+                        <div class="timeline-marker"><i class="fas fa-code" aria-hidden="true"></i></div>
+                        <div class="timeline-content">
+                            <div class="timeline-meta"><span class="timeline-year">2021</span><span class="timeline-tag work">Freelance</span></div>
+                            <h4>Software Developer</h4>
+                            <p class="timeline-org">Independent — Copenhagen</p>
+                            <p class="timeline-desc">Developed bespoke data tools and desktop applications using Python, PyQt, and Pandas for clients in the environmental sector.</p>
+                        </div>
+                    </div>
+
+                    <!-- 2022 — Education LEFT -->
+                    <div class="timeline-item" data-type="education">
+                        <div class="timeline-content">
+                            <div class="timeline-meta"><span class="timeline-year">2022</span><span class="timeline-tag education">Certificate</span></div>
+                            <h4>Advanced GIS &amp; Remote Sensing</h4>
+                            <p class="timeline-org">[Institution Placeholder]</p>
+                            <p class="timeline-desc">Advanced spatial analysis, satellite imagery interpretation, and remote sensing data processing techniques.</p>
+                        </div>
+                        <div class="timeline-marker"><i class="fas fa-satellite" aria-hidden="true"></i></div>
+                        <div class="timeline-gap"></div>
+                    </div>
+
+                    <!-- 2022 — Work RIGHT -->
+                    <div class="timeline-item" data-type="work">
+                        <div class="timeline-gap"></div>
+                        <div class="timeline-marker"><i class="fas fa-chart-line" aria-hidden="true"></i></div>
+                        <div class="timeline-content">
+                            <div class="timeline-meta"><span class="timeline-year">2022</span><span class="timeline-tag work">Work</span></div>
+                            <h4>Data Scientist &amp; Software Developer</h4>
+                            <p class="timeline-org">[Company Placeholder] — Copenhagen</p>
+                            <p class="timeline-desc">Delivered machine learning models and custom GIS tooling for environmental forecasting and automated map production.</p>
+                        </div>
+                    </div>
+
+                    <!-- 2023 — Education LEFT -->
+                    <div class="timeline-item" data-type="education">
+                        <div class="timeline-content">
+                            <div class="timeline-meta"><span class="timeline-year">2023</span><span class="timeline-tag education">Certificate</span></div>
+                            <h4>Deep Learning &amp; Computer Vision</h4>
+                            <p class="timeline-org">[Institution Placeholder]</p>
+                            <p class="timeline-desc">Neural network architectures, convolutional networks, and applied computer vision for real-world analysis tasks.</p>
+                        </div>
+                        <div class="timeline-marker"><i class="fas fa-brain" aria-hidden="true"></i></div>
+                        <div class="timeline-gap"></div>
+                    </div>
+
+                    <!-- 2023 — Work RIGHT -->
+                    <div class="timeline-item" data-type="work">
+                        <div class="timeline-gap"></div>
+                        <div class="timeline-marker"><i class="fas fa-users" aria-hidden="true"></i></div>
+                        <div class="timeline-content">
+                            <div class="timeline-meta"><span class="timeline-year">2023</span><span class="timeline-tag work">Work</span></div>
+                            <h4>Senior Data Scientist</h4>
+                            <p class="timeline-org">[Company Placeholder] — Copenhagen</p>
+                            <p class="timeline-desc">Led cross-functional data science projects, mentored junior analysts, and architected scalable environmental data pipelines.</p>
+                        </div>
+                    </div>
+
+                    <!-- 2024 — Work RIGHT (Current) -->
+                    <div class="timeline-item current" data-type="current">
+                        <div class="timeline-gap"></div>
+                        <div class="timeline-marker"><i class="fas fa-star" aria-hidden="true"></i></div>
+                        <div class="timeline-content">
+                            <div class="timeline-meta"><span class="timeline-year">2024</span><span class="timeline-tag current">Current</span></div>
+                            <h4>Freelance Data Scientist &amp; Developer</h4>
+                            <p class="timeline-org">Independent — Copenhagen</p>
+                            <p class="timeline-desc">Delivering end-to-end data science and software development projects spanning environmental modelling, GIS automation, and computer vision applications.</p>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </section>
     </main>
 
-    <footer role="contentinfo">
+    <footer role="contentinfo" style="scroll-margin-top: var(--nav-height, 60px);">
         <div class="footer-content">
             <div class="contact-info" id="contact">
-                <h3>Contact Me</h3>
+                <h3>Contact</h3>
                 <p><i class="fas fa-envelope" aria-hidden="true"></i> <a href="mailto:Oliverlund1@hotmail.com">Oliverlund1@hotmail.com</a></p>
                 <p><i class="fas fa-phone" aria-hidden="true"></i> <a href="tel:+4593603182">(45) 93 60 31 82</a></p>
                 <p><i class="fas fa-map-marker-alt" aria-hidden="true"></i> Copenhagen, Denmark</p>
@@ -653,9 +624,11 @@
     <!-- Scripts loaded at the end for better performance -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script src="js/backdrops/backdrop-network.js"></script>
     <script src="js/software-dev-animation.js"></script>
     <script src="https://d3js.org/d3.v7.min.js"></script>
     <script src="https://d3js.org/topojson.v3.min.js"></script>
+    <script src="js/home-skills.js" defer></script>
     <script src="js/particles-config.js" defer></script>
     <script type="module" src="js/gis-animation.js"></script>
     <script src="js/navigation.js" defer></script>

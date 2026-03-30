@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(ls \"C:\\\\Github_repositories\\\\Webpage\\\\css\\\\\" && ls \"C:\\\\Github_repositories\\\\Webpage\\\\js\\\\\")"
+    ]
+  }
+}

@@ -1,405 +1,169 @@
-/* Enhanced Carousel Styling */
+/* =====================================================
+   CAROUSELS
+   ===================================================== */
+
 .project-carousel,
 .plot-carousel,
 .map-carousel {
-    position: relative;
-    overflow: hidden;
-    margin: 2rem 0;
-    border-radius: var(--border-radius);
-    background: rgba(255, 255, 255, 0.5);
-    backdrop-filter: blur(10px);
-    padding: 1rem;
-    box-shadow: var(--shadow-light);
+  position: relative;
+  margin: 1rem 0 0;
+  padding: 0.25rem 0;
+  background: none;
+  backdrop-filter: none;
+  box-shadow: none;
+  border-radius: 0;
+  overflow: visible;
 }
 
+/* Containers */
 .project-cards-container,
 .plot-cards-container,
 .map-cards-container {
-    overflow-x: auto;
-    scroll-behavior: smooth;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none; /* Firefox */
-    -ms-overflow-style: none;  /* Internet Explorer 10+ */
-    padding: 1rem 0;
-    position: relative;
+  overflow: hidden;
+  border-radius: var(--radius);
+  padding: 0.5rem 0;
 }
 
-/* Hide scrollbars */
-.project-cards-container::-webkit-scrollbar,
-.plot-cards-container::-webkit-scrollbar,
-.map-cards-container::-webkit-scrollbar {
-    display: none; /* WebKit */
-}
-
+/* Card strips */
 .project-cards,
 .plot-cards,
 .map-cards {
-    display: flex;
-    gap: 1.5rem;
-    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    padding: 0 1rem;
+  display: flex;
+  gap: 1rem;
+  transition: transform 0.4s var(--ease);
+  padding: 0 0.25rem;
+  will-change: transform;
 }
 
-/* Enhanced Card Styling */
-.project-card,
-.plot-card,
-.map-card {
-    flex: 0 0 100%;
-    max-width: 100%;
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
-    border-radius: var(--border-radius);
-    box-shadow: var(--shadow-light);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    transition: var(--transition);
-    overflow: hidden;
-    position: relative;
+/* ---- Individual card sizing ---- */
+
+/* Desktop card widths */
+@media (min-width: 992px) {
+  .project-card { flex: 0 0 calc(33.333% - 0.7rem); max-width: calc(33.333% - 0.7rem); }
+  .plot-card    { flex: 0 0 calc(46% - 0.55rem);    max-width: calc(46% - 0.55rem);    }
+  .map-card     { flex: 0 0 calc(42% - 0.6rem);     max-width: calc(42% - 0.6rem);     }
 }
 
+@media (min-width: 768px) and (max-width: 991px) {
+  .project-card,
+  .plot-card,
+  .map-card { flex: 0 0 calc(50% - 0.5rem); max-width: calc(50% - 0.5rem); }
+}
+
+@media (max-width: 767px) {
+  .project-card,
+  .plot-card,
+  .map-card { flex: 0 0 88%; max-width: 88%; }
+}
+
+/* Image heights */
+.project-card img {
+  height: 185px;
+  object-fit: cover;
+}
+
+.plot-card img {
+  height: 220px;
+  object-fit: contain;
+  background: var(--bg-deep);
+}
+
+.map-card img {
+  height: 185px;
+  object-fit: cover;
+}
+
+/* Before-top accent bar on cards */
 .project-card::before,
 .plot-card::before,
 .map-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 3px;
-    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color), var(--accent-color));
-    transform: scaleX(0);
-    transition: transform 0.3s ease;
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, var(--gold), var(--teal));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s var(--ease);
+  z-index: 1;
 }
 
 .project-card:hover::before,
 .plot-card:hover::before,
 .map-card:hover::before {
-    transform: scaleX(1);
+  transform: scaleX(1);
 }
 
-.project-card:hover,
-.plot-card:hover,
-.map-card:hover {
-    transform: translateY(-10px);
-    box-shadow: var(--shadow-medium);
-}
-
-/* Enhanced Image Styling */
-.project-card img,
-.plot-card img,
-.map-card img {
-    width: 100%;
-    object-position: center;
-    transition: var(--transition);
-    border-radius: var(--border-radius) var(--border-radius) 0 0;
-}
-
-.project-card:hover img,
-.plot-card:hover img,
-.map-card:hover img {
-    transform: scale(1.05);
-}
-
-/* Specific card dimensions */
-.project-card {
-    min-height: 500px;
-}
-
-.plot-card {
-    min-height: 450px;
-}
-
-.map-card {
-    min-height: 400px;
-}
-
-/* Image heights */
-.project-card img {
-    height: 250px;
-    object-fit: cover;
-}
-
-.plot-card img {
-    height: 300px;
-    object-fit: contain;
-    background: #f8f9fa;
-}
-
-.map-card img {
-    height: 250px;
-    object-fit: cover;
-}
-
-/* Enhanced Content Styling */
-.project-card-content,
-.plot-card-content,
-.map-card-content {
-    padding: 1.5rem;
-    position: relative;
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-}
-
-.project-card-content h3,
-.plot-card-content h3,
-.map-card-content h3 {
-    color: var(--primary-color);
-    font-size: 1.25rem;
-    margin-bottom: 1rem;
-    font-weight: 600;
-}
-
-.project-card-content p,
-.plot-card-content p,
-.map-card-content p {
-    color: var(--text-light);
-    font-size: 0.95rem;
-    line-height: 1.6;
-    margin-bottom: 1rem;
-    flex-grow: 1;
-}
-
-/* Enhanced Button Styling */
-.project-card-content .btn,
-.plot-card-content .btn,
-.map-card-content .btn {
-    align-self: flex-start;
-    margin-bottom: 1rem;
-    font-size: 0.9rem;
-    padding: 0.5rem 1rem;
-}
-
-/* Enhanced Tags Styling */
-.project-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    margin-top: auto;
-}
-
-.project-tags .tag {
-    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-    color: white;
-    font-size: 0.75rem;
-    padding: 0.25rem 0.75rem;
-    border-radius: 15px;
-    font-weight: 500;
-    letter-spacing: 0.5px;
-    transition: var(--transition);
-}
-
-.project-tags .tag:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-}
-
-/* Enhanced Arrow Styling */
+/* ---- Arrow buttons ---- */
 .carousel-arrow {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 20;
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    border-radius: 50%;
-    width: 50px;
-    height: 50px;
-    font-size: 1.25rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    box-shadow: var(--shadow-light);
-    color: var(--primary-color);
-    transition: var(--transition);
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  background: var(--bg-elevated) !important;
+  border: 1px solid var(--border) !important;
+  color: var(--text-secondary) !important;
+  border-radius: 50% !important;
+  width: 34px !important;
+  height: 34px !important;
+  min-width: unset !important;
+  padding: 0 !important;
+  font-size: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: none !important;
+  transition: var(--transition);
+  line-height: 1;
 }
 
 .carousel-arrow:hover {
-    background: rgba(255, 255, 255, 1);
-    box-shadow: var(--shadow-medium);
-    transform: translateY(-50%) scale(1.1);
-    color: var(--secondary-color);
+  background: var(--bg-hover) !important;
+  border-color: var(--gold-dim) !important;
+  color: var(--gold-light) !important;
+  transform: translateY(-50%) !important;
+  box-shadow: none !important;
 }
 
 .carousel-arrow:active {
-    transform: translateY(-50%) scale(0.95);
+  transform: translateY(-50%) scale(0.95) !important;
 }
 
-.carousel-arrow.prev {
-    left: -25px;
+.carousel-arrow.prev { left: -16px; }
+.carousel-arrow.next { right: -16px; }
+
+/* Hidden state */
+.carousel-arrow.hidden {
+  opacity: 0 !important;
+  pointer-events: none !important;
 }
 
-.carousel-arrow.next {
-    right: -25px;
+/* Project tags */
+.project-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin-top: 0.5rem;
 }
 
-.carousel-arrow i {
-    transition: var(--transition);
-}
-
-.carousel-arrow:hover i {
-    transform: scale(1.2);
-}
-
-/* Responsive Design */
-@media (min-width: 768px) {
-    .project-card,
-    .plot-card,
-    .map-card {
-        flex: 0 0 calc(50% - 1rem);
-        max-width: calc(50% - 1rem);
-    }
-    
-    .carousel-arrow.prev {
-        left: -20px;
-    }
-    
-    .carousel-arrow.next {
-        right: -20px;
-    }
-}
-
-@media (min-width: 992px) {
-    .project-card {
-        flex: 0 0 calc(33.333% - 1rem);
-        max-width: calc(33.333% - 1rem);
-    }
-    
-    .plot-card {
-        flex: 0 0 calc(45% - 1rem);
-        max-width: calc(45% - 1rem);
-    }
-    
-    .map-card {
-        flex: 0 0 calc(40% - 1rem);
-        max-width: calc(40% - 1rem);
-    }
-}
-
-@media (min-width: 1200px) {
-    .project-card {
-        flex: 0 0 calc(25% - 1rem);
-        max-width: calc(25% - 1rem);
-    }
-    
-    .plot-card {
-        flex: 0 0 calc(33.333% - 1rem);
-        max-width: calc(33.333% - 1rem);
-    }
-    
-    .map-card {
-        flex: 0 0 calc(30% - 1rem);
-        max-width: calc(30% - 1rem);
-    }
-}
-
-/* Mobile Responsive */
+/* ---- Responsive ---- */
 @media (max-width: 767px) {
-    .project-carousel,
-    .plot-carousel,
-    .map-carousel {
-        margin: 1rem 0;
-        padding: 0.5rem;
-    }
-    
-    .project-cards,
-    .plot-cards,
-    .map-cards {
-        gap: 1rem;
-        padding: 0 0.5rem;
-    }
-    
-    .project-card,
-    .plot-card,
-    .map-card {
-        flex: 0 0 calc(90% - 0.5rem);
-        max-width: calc(90% - 0.5rem);
-        min-height: auto;
-    }
-    
-    .project-card img,
-    .plot-card img,
-    .map-card img {
-        height: 200px;
-    }
-    
-    .project-card-content,
-    .plot-card-content,
-    .map-card-content {
-        padding: 1rem;
-    }
-    
-    .carousel-arrow {
-        width: 40px;
-        height: 40px;
-        font-size: 1rem;
-    }
-    
-    .carousel-arrow.prev {
-        left: -15px;
-    }
-    
-    .carousel-arrow.next {
-        right: -15px;
-    }
-}
+  .project-carousel,
+  .plot-carousel,
+  .map-carousel {
+    margin: 0.75rem 0 0;
+  }
 
-/* Loading State */
-.carousel-loading {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 300px;
-    color: var(--text-light);
-    font-size: 1.1rem;
-}
+  .project-cards,
+  .plot-cards,
+  .map-cards { gap: 0.75rem; }
 
-.carousel-loading::after {
-    content: '';
-    width: 20px;
-    height: 20px;
-    border: 2px solid var(--primary-color);
-    border-top: 2px solid transparent;
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
-    margin-left: 10px;
-}
+  .carousel-arrow { width: 30px !important; height: 30px !important; }
+  .carousel-arrow.prev { left: -12px; }
+  .carousel-arrow.next { right: -12px; }
 
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-
-/* Accessibility improvements */
-.carousel-arrow:focus {
-    outline: 2px solid var(--accent-color);
-    outline-offset: 2px;
-}
-
-/* Scroll indicator dots */
-.carousel-indicators {
-    display: flex;
-    justify-content: center;
-    gap: 0.5rem;
-    margin-top: 1rem;
-}
-
-.carousel-indicator {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: rgba(74, 144, 226, 0.3);
-    cursor: pointer;
-    transition: var(--transition);
-}
-
-.carousel-indicator.active {
-    background: var(--primary-color);
-    transform: scale(1.2);
-}
-
-.carousel-indicator:hover {
-    background: var(--secondary-color);
-    transform: scale(1.1);
+  .project-card img,
+  .map-card img { height: 160px; }
+  .plot-card img { height: 180px; }
 }

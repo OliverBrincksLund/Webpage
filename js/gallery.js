@@ -29,27 +29,6 @@ function createGalleryItem(item, index) {
     return galleryItem;
 }
 
-function lazyLoadGalleryImages() {
-    const images = document.querySelectorAll('.gallery-item img[data-src]');
-    const options = {
-        root: null,
-        rootMargin: '0px',
-        threshold: 0.1
-    };
-
-    const observer = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const img = entry.target;
-                img.src = img.dataset.src;
-                img.removeAttribute('data-src');
-                observer.unobserve(img);
-            }
-        });
-    }, options);
-
-    images.forEach(img => observer.observe(img));
-}
 
 function openLightbox(index) {
     const currentItem = galleryItems[index];
@@ -59,6 +38,7 @@ function openLightbox(index) {
     const lightbox = document.createElement('div');
     lightbox.className = 'lightbox';
     lightbox.innerHTML = `
+        <button class="lightbox-close-btn" aria-label="Close lightbox"><i class="fas fa-times"></i></button>
         <div class="lightbox-content">
             <div class="lightbox-carousel">
                 ${currentCategoryItems.map(item => `
@@ -73,14 +53,17 @@ function openLightbox(index) {
                 `).join('')}
             </div>
         </div>
-        <button class="lightbox-nav prev">&lt;</button>
-        <button class="lightbox-nav next">&gt;</button>
+        <button class="lightbox-nav prev" aria-label="Previous image"><i class="fas fa-chevron-left"></i></button>
+        <button class="lightbox-nav next" aria-label="Next image"><i class="fas fa-chevron-right"></i></button>
     `;
     document.body.appendChild(lightbox);
     
     const carousel = lightbox.querySelector('.lightbox-carousel');
     const prevButton = lightbox.querySelector('.lightbox-nav.prev');
     const nextButton = lightbox.querySelector('.lightbox-nav.next');
+    const closeButton = lightbox.querySelector('.lightbox-close-btn');
+
+    closeButton.addEventListener('click', closeLightbox);
 
     function updateCarousel() {
         const slides = lightbox.querySelectorAll('.lightbox-slide');
