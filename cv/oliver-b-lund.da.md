@@ -2,7 +2,7 @@
 
 Forskningsassistent, DTU Sustain | Civilingeniør i miljøteknologi
 
-[Oliverlund1@hotmail.com](mailto:Oliverlund1@hotmail.com) · [+45 93 60 31 82](tel:+4593603182) · [oliverbrinkslund.github.io](https://oliverbrinkslund.github.io)
+[Oliverlund1@hotmail.com](mailto:Oliverlund1@hotmail.com) · [+45 93 60 31 82](tel:+4593603182) · [oliverbrinckslund.github.io/Webpage](https://oliverbrinckslund.github.io/Webpage)
 
 ## Faglig profil
 
