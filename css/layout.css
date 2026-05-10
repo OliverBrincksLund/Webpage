@@ -697,6 +697,86 @@ body.light .bg-scene .bg-points   { fill:   rgba(30,70,58,0.10);  }
 body.light .bg-scene .bg-labels   { fill:   rgba(30,70,58,0.07);  }
 body.light .bg-scene .bg-arrows   { stroke: rgba(30,70,58,0.06);  }
 
+/* ── Sidebar monogram ──────────────────────────────────────── */
+.sidebar-monogram {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--gold-d), var(--gold));
+  color: #09090f;
+  font-family: var(--fd);
+  font-weight: 900;
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.9rem;
+  flex-shrink: 0;
+  box-shadow: 0 0 0 2px rgba(196,144,64,0.2), 0 4px 12px rgba(0,0,0,0.4);
+}
+
+/* ── Nav FA icons ──────────────────────────────────────────── */
+.nav-item i {
+  width: 15px;
+  font-size: 0.68rem;
+  text-align: center;
+  flex-shrink: 0;
+  color: var(--tx-3);
+  transition: color 0.15s;
+}
+.nav-item:hover i,
+.nav-item.active i { color: var(--gold); }
+.nav-item.sub i,
+.nav-item.child i { font-size: 0.62rem; }
+
+.nav-group-label i {
+  font-size: 0.58rem;
+  color: var(--tx-4);
+  margin-right: 0.3rem;
+}
+
+/* ── Sidebar social links ──────────────────────────────────── */
+.sidebar-social {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+.sidebar-social a {
+  width: 30px;
+  height: 30px;
+  border-radius: 6px;
+  border: 1px solid var(--bd-s);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--tx-3);
+  font-size: 0.78rem;
+  transition: color 0.18s, border-color 0.18s, background 0.18s;
+  text-decoration: none;
+}
+.sidebar-social a:hover {
+  color: var(--gold-l);
+  border-color: rgba(196,144,64,0.4);
+  background: var(--gold-glow);
+}
+
+/* ── CV btn icon + glow ────────────────────────────────────── */
+.cv-btn i { font-size: 0.78rem; }
+.cv-btn:hover {
+  background: var(--gold);
+  color: #09090f;
+  border-color: var(--gold);
+  box-shadow: 0 0 18px rgba(196,144,64,0.35);
+}
+
+/* ── Avail dot — smooth pulse ──────────────────────────────── */
+.avail-dot { animation: avail-pulse 2.2s ease-in-out infinite; }
+@keyframes avail-pulse {
+  0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(56,168,152,0.5); }
+  50%       { opacity: 0.7; box-shadow: 0 0 0 4px rgba(56,168,152,0); }
+}
+
 /* Mobile: .main doesn't scroll so sticky won't work — use fixed */
 @media (max-width: 680px) {
   .bg-scene {

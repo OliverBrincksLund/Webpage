@@ -11,6 +11,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,600;9..144,700;9..144,900&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
 <link rel="stylesheet" href="css/base.css">
 <link rel="stylesheet" href="css/layout.css">
 <link rel="stylesheet" href="css/components.css">
@@ -33,6 +34,7 @@
   <aside class="sidebar" id="sidebar">
 
     <div class="sidebar-id">
+      <div class="sidebar-monogram">OBL</div>
       <div class="sidebar-name">Oliver B. Lund</div>
       <div class="sidebar-degree">MSc Environmental Engineering<br>Technical University of Denmark</div>
     </div>
@@ -42,7 +44,7 @@
       <!-- Home -->
       <div class="nav-group">
         <button type="button" class="nav-item active" data-panel="home">
-          <span class="nav-dot"></span>Home
+          <i class="fa-solid fa-house"></i>Home
         </button>
       </div>
 
@@ -50,21 +52,21 @@
 
       <!-- Software -->
       <div class="nav-group">
-        <div class="nav-group-label">Software</div>
+        <div class="nav-group-label"><i class="fa-solid fa-code"></i>Software</div>
         <button type="button" class="nav-item sub" data-panel="sw-headanalyser">
-          <span class="nav-dot"></span>HeadAnalyser
+          <i class="fa-solid fa-water"></i>HeadAnalyser
         </button>
         <button type="button" class="nav-item child" data-panel="sw-headanalyser-v2">
-          <span class="nav-dot"></span>V2 (in development)
+          <i class="fa-solid fa-code-branch"></i>V2 (in development)
         </button>
         <button type="button" class="nav-item sub" data-panel="sw-gsa">
-          <span class="nav-dot"></span>GrainSizeAnalysis
+          <i class="fa-solid fa-layer-group"></i>GrainSizeAnalysis
         </button>
         <button type="button" class="nav-item sub" data-panel="sw-datamerger">
-          <span class="nav-dot"></span>DataMerger
+          <i class="fa-solid fa-database"></i>DataMerger
         </button>
         <button type="button" class="nav-item sub" data-panel="sw-qgis">
-          <span class="nav-dot"></span>QGIS Program
+          <i class="fa-solid fa-map"></i>QGIS Program
         </button>
       </div>
 
@@ -72,18 +74,18 @@
 
       <!-- Projects -->
       <div class="nav-group">
-        <div class="nav-group-label">Projects</div>
+        <div class="nav-group-label"><i class="fa-solid fa-folder-open"></i>Projects</div>
         <button type="button" class="nav-item sub" data-panel="proj-1">
-          <span class="nav-dot"></span>Regionernes overfladevand
+          <i class="fa-solid fa-droplet"></i>Regionernes overfladevand
         </button>
         <button type="button" class="nav-item sub" data-panel="proj-2">
-          <span class="nav-dot"></span>InSa-Drikkevand
+          <i class="fa-solid fa-flask-vial"></i>InSa-Drikkevand
         </button>
         <button type="button" class="nav-item sub" data-panel="proj-3">
-          <span class="nav-dot"></span>Grundvandets kemiske påvirkning
+          <i class="fa-solid fa-mountain"></i>Grundvandets kemiske påvirkning
         </button>
         <button type="button" class="nav-item sub" data-panel="proj-4">
-          <span class="nav-dot"></span>PFAS / pesticider beslutningstræer
+          <i class="fa-solid fa-triangle-exclamation"></i>PFAS / pesticider beslutningstræer
         </button>
       </div>
 
@@ -91,15 +93,15 @@
 
       <!-- Academic -->
       <div class="nav-group">
-        <div class="nav-group-label">Academic</div>
+        <div class="nav-group-label"><i class="fa-solid fa-graduation-cap"></i>Academic</div>
         <button type="button" class="nav-item sub" data-panel="proj-5">
-          <span class="nav-dot"></span>Sedimentary Microbial Fuel Cells
+          <i class="fa-solid fa-bolt"></i>Sedimentary Microbial Fuel Cells
         </button>
         <button type="button" class="nav-item sub" data-panel="proj-6">
-          <span class="nav-dot"></span>UV-A &amp; Plant Growth
+          <i class="fa-solid fa-seedling"></i>UV-A &amp; Plant Growth
         </button>
         <button type="button" class="nav-item sub" data-panel="proj-7">
-          <span class="nav-dot"></span>MSc Thesis — Deep Learning QC
+          <i class="fa-solid fa-brain"></i>MSc Thesis — Deep Learning QC
         </button>
       </div>
 
@@ -108,7 +110,7 @@
       <!-- Gallery -->
       <div class="nav-group">
         <button type="button" class="nav-item" data-panel="gallery">
-          <span class="nav-dot"></span>Gallery
+          <i class="fa-solid fa-images"></i>Gallery
         </button>
       </div>
 
@@ -117,7 +119,7 @@
       <!-- About -->
       <div class="nav-group">
         <button type="button" class="nav-item" data-panel="about">
-          <span class="nav-dot"></span>About &amp; Contact
+          <i class="fa-solid fa-user"></i>About &amp; Contact
         </button>
       </div>
 
@@ -127,12 +129,23 @@
       <div class="avail-badge">
         <span class="avail-dot"></span>DTU Sustain · Research Assistant
       </div>
+      <div class="sidebar-social">
+        <a href="mailto:Oliverlund1@hotmail.com" aria-label="Email" title="Send email">
+          <i class="fa-solid fa-envelope"></i>
+        </a>
+        <a href="https://github.com/OliverBrincksLund" target="_blank" rel="noopener" aria-label="GitHub" title="GitHub profile">
+          <i class="fa-brands fa-github"></i>
+        </a>
+        <a href="https://oliverbrinckslund.github.io/Webpage" target="_blank" rel="noopener" aria-label="Portfolio" title="Portfolio website">
+          <i class="fa-solid fa-globe"></i>
+        </a>
+      </div>
       <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle light mode" aria-pressed="false">
         <span class="toggle-track"><span class="toggle-thumb"></span></span>
         <span class="toggle-label">Light mode</span>
       </button>
       <a href="cv/oliver-b-lund.da.html" class="cv-btn" target="_blank" rel="noopener">
-        ↓ &ensp;Open CV (DA)
+        <i class="fa-solid fa-file-lines"></i>Open CV (DA)
       </a>
     </div>
 
@@ -638,7 +651,7 @@
 
         <!-- ── Header ── -->
         <div class="panel-header">
-          <div class="panel-eyebrow">Software</div>
+          <div class="panel-eyebrow"><i class="fa-solid fa-code"></i>Software</div>
           <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:0.75rem;flex-wrap:wrap;">
             <h1 class="panel-title" style="margin-bottom:0;">HeadAnalyser</h1>
             <span class="version-badge">v1.1.1</span>
@@ -824,7 +837,7 @@
 
         <!-- ── Header ── -->
         <div class="panel-header">
-          <div class="panel-eyebrow">Software</div>
+          <div class="panel-eyebrow"><i class="fa-solid fa-code"></i>Software</div>
           <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:0.75rem;flex-wrap:wrap;">
             <h1 class="panel-title" style="margin-bottom:0;">HeadAnalyser V2</h1>
             <span class="version-badge wip">in development</span>
@@ -974,7 +987,7 @@
 
         <!-- ── Header ── -->
         <div class="panel-header">
-          <div class="panel-eyebrow">Software</div>
+          <div class="panel-eyebrow"><i class="fa-solid fa-code"></i>Software</div>
           <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:0.75rem;flex-wrap:wrap;">
             <h1 class="panel-title" style="margin-bottom:0;">GrainSizeAnalysis</h1>
             <span class="version-badge wip">v0.9.0-beta</span>
@@ -1151,7 +1164,7 @@
     <div class="panel" id="panel-sw-datamerger">
       <div class="panel-wrap">
         <div class="panel-header">
-          <div class="panel-eyebrow">Software</div>
+          <div class="panel-eyebrow"><i class="fa-solid fa-code"></i>Software</div>
           <h1 class="panel-title">DataMerger</h1>
           <p class="panel-subtitle">A desktop application for data manipulation, merging, filtering, spatial analysis, and visualisation — built for real environmental data workflows.</p>
           <div class="tags" style="margin-top:1rem;">
@@ -1221,7 +1234,7 @@
     <div class="panel" id="panel-sw-qgis">
       <div class="panel-wrap">
         <div class="panel-header">
-          <div class="panel-eyebrow">Software</div>
+          <div class="panel-eyebrow"><i class="fa-solid fa-code"></i>Software</div>
           <h1 class="panel-title">QGIS Program</h1>
           <p class="panel-subtitle">Custom QGIS-based tooling for streamlining geospatial workflows and automated map production.</p>
           <div class="tags" style="margin-top:1rem;">
@@ -1730,7 +1743,7 @@
     <div class="panel" id="panel-proj-4">
       <div class="panel-wrap">
         <div class="panel-header">
-          <div class="panel-eyebrow">DTU Sustain · GEUS · Miljøstyrelsen</div>
+          <div class="panel-eyebrow"><i class="fa-solid fa-droplet"></i>DTU Sustain · GEUS · Miljøstyrelsen</div>
           <h1 class="panel-title">Risiko- og tilstandsvurdering for PFAS og pesticider</h1>
           <p class="panel-subtitle">Collaborative project with GEUS and Miljøstyrelsen, where I contribute Python workflows for parts of the risk assessment and implement tilstandsvurdering based on the final input of groundwater bodies assessed to be at risk.</p>
           <div class="tags" style="margin-top:1rem;">
@@ -1861,7 +1874,7 @@
     <div class="panel" id="panel-proj-5">
       <div class="panel-wrap">
         <div class="panel-header">
-          <div class="panel-eyebrow">DTU · Department of Environmental Engineering · 2022</div>
+          <div class="panel-eyebrow"><i class="fa-solid fa-bolt"></i>DTU · Department of Environmental Engineering · 2022</div>
           <h1 class="panel-title">Sedimentary Microbial Fuel Cells</h1>
           <p class="panel-subtitle">Bachelor thesis investigating how Sedimentary Microbial Fuel Cells (SMFCs) can be used to remediate coastal marine sediments suffering from hypoxia and toxic sulfide accumulation — awarded Årets bachelorprojekt 2022 by the DTU Sustain Colding Award.</p>
           <div class="tags" style="margin-top:1rem;">
@@ -1876,7 +1889,7 @@
 
         <div class="achieve-list" style="margin-bottom:2rem;">
           <div class="achieve-item">
-            <span class="achieve-marker">◆</span>
+            <span class="achieve-marker"><i class="fa-solid fa-trophy"></i></span>
             <div><strong>Colding Award — Årets bachelorprojekt 2022</strong> — awarded by DTU Sustain together with Emma Mørk-Pedersen for <em>Effects on oxygen depletion and sulfide levels in marine sediments</em>. <a href="https://sustain.dtu.dk/undervisning/colding-award/winners" target="_blank" rel="noopener">See award page ↗</a></div>
           </div>
         </div>
@@ -2020,7 +2033,7 @@
     <div class="panel" id="panel-proj-6">
       <div class="panel-wrap">
         <div class="panel-header">
-          <div class="panel-eyebrow">DTU Environment · Special BSc Course · Autumn 2021</div>
+          <div class="panel-eyebrow"><i class="fa-solid fa-seedling"></i>DTU Environment · Special BSc Course · Autumn 2021</div>
           <h1 class="panel-title">UV-A Radiation &amp; Plant Growth</h1>
           <p class="panel-subtitle">Special BSc course project investigating how varying intensities of UV-A radiation affect biomass production and secondary metabolite accumulation in hydroponically grown lettuce — written as a scientific manuscript and commended by the supervising professor as publication-ready.</p>
           <div class="tags" style="margin-top:1rem;">
@@ -2035,7 +2048,7 @@
 
         <div class="achieve-list" style="margin-bottom:2rem;">
           <div class="achieve-item">
-            <span class="achieve-marker">◆</span>
+            <span class="achieve-marker"><i class="fa-solid fa-certificate"></i></span>
             <div><strong>Professor statement</strong> — Assoc. Prof. Teis Nørgaard Mikkelsen (DTU Environment) wrote that the report <em>"fulfills all requirements for an actual scientific published paper"</em> and that the students <em>"did high-class work and demonstrated a rare commitment to scientific work."</em> <a href="Docs/projects/special-course-plants/statement.pdf" target="_blank" rel="noopener">Read statement ↗</a></div>
           </div>
         </div>
@@ -2179,7 +2192,7 @@
     <div class="panel" id="panel-proj-7">
       <div class="panel-wrap">
         <div class="panel-header">
-          <div class="panel-eyebrow">DTU Sustain · Section for Water Systems · June 2025</div>
+          <div class="panel-eyebrow"><i class="fa-solid fa-brain"></i>DTU Sustain · Section for Water Systems · June 2025</div>
           <h1 class="panel-title">Automatic Quality Control of Stream Water Level Time Series Using Deep Learning</h1>
           <p class="panel-subtitle">MSc thesis investigating LSTM neural networks for automated anomaly detection and imputation in Danish stream water level data — developed in collaboration with SGAV and built around a custom synthetic anomaly framework for training data generation.</p>
           <div class="tags" style="margin-top:1rem;">
@@ -2409,23 +2422,23 @@
           <div class="p-section-label">Key Achievements</div>
           <div class="achieve-list">
             <div class="achieve-item">
-              <span class="achieve-marker">◆</span>
+              <span class="achieve-marker"><i class="fa-solid fa-graduation-cap"></i></span>
               <div><strong>MSc Environmental Engineering</strong> — completed at the Technical University of Denmark in June 2025.</div>
             </div>
             <div class="achieve-item">
-              <span class="achieve-marker">◆</span>
+              <span class="achieve-marker"><i class="fa-solid fa-trophy"></i></span>
               <div><strong>Årets bachelorprojekt 2022</strong> — received together with Emma Mørk-Pedersen for <em>Effects on oxygen depletion and sulfide levels in marine sediments</em>.</div>
             </div>
             <div class="achieve-item">
-              <span class="achieve-marker">◆</span>
+              <span class="achieve-marker"><i class="fa-solid fa-water"></i></span>
               <div><strong>HeadAnalyser</strong> — developed a groundwater hydraulic gradient analysis tool at DTU Sustain, with an ongoing V2 rewrite.</div>
             </div>
             <div class="achieve-item">
-              <span class="achieve-marker">◆</span>
+              <span class="achieve-marker"><i class="fa-solid fa-database"></i></span>
               <div><strong>DataMerger</strong> — Built full-featured desktop application for environmental data workflows: spatial joins, interactive Leaflet mapping, SQL server connectivity, and import/export for CSV, XLSX, GeoJSON, SHP.</div>
             </div>
             <div class="achieve-item">
-              <span class="achieve-marker">◆</span>
+              <span class="achieve-marker"><i class="fa-solid fa-chalkboard-user"></i></span>
               <div><strong>Teaching &amp; research roles at DTU</strong> — served twice as a teaching assistant in LCA, then progressed from student assistant to research assistant at DTU Sustain.</div>
             </div>
           </div>

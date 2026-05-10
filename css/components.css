@@ -713,3 +713,32 @@
   text-align: right;
   padding-top: 1.4rem;
 }
+
+/* ── Showcase image hover overlay ─────────────────────────── */
+.showcase-img {
+  position: relative;
+  overflow: hidden;
+}
+.showcase-img::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 40%, rgba(9,9,15,0.7) 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+.showcase-item:hover .showcase-img::after { opacity: 1; }
+
+/* ── Achieve marker FA icons ───────────────────────────────── */
+.achieve-marker i {
+  font-size: 0.75rem;
+  color: var(--gold);
+}
+
+/* ── Panel eyebrow FA icons ────────────────────────────────── */
+.panel-eyebrow i {
+  font-size: 0.58rem;
+  opacity: 0.75;
+  margin-right: 0.35rem;
+}
