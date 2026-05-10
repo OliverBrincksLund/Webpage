@@ -41,11 +41,13 @@
   --ease: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-html { font-size: 16px; }
+html { font-size: 17px; }
 html, body { height: 100%; }
 
 body {
   font-family: var(--fb);
+  font-size: 1rem;
+  line-height: 1.65;
   background: var(--bg);
   color: var(--tx);
   -webkit-font-smoothing: antialiased;
