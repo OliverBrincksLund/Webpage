@@ -35,14 +35,14 @@ Forskningsassistent på DTU Sustain med erfaring inden for miljødataanalyse, sp
 
 **Civilingeniør (cand.polyt.) i miljøteknologi**  
 Danmarks Tekniske Universitet (DTU) · Juni 2025  
-Speciale: *Automatic Quality Control of Danish Stream Water Level Time Series Using Deep Learning* - automatisk kvalitetskontrol af danske vandstandstidsserier ved brug af deep learning.
+Speciale: *Automatic Quality Control of Danish Stream Water Level Time Series Using Deep Learning* - LSTM-baseret automatisk kvalitetskontrol af danske vandstandstidsserier i samarbejde med SGAV.
 
 **Bachelorgrad i miljøteknologi**  
 Danmarks Tekniske Universitet (DTU) · 2022
 
 ## Udvalgte faglige highlights
 
-- Modtog Årets bachelorprojekt 2022 for projektet *Effects on oxygen depletion and sulfide levels in marine sediments* (sammen med Emma Mørk-Pedersen).
+- Modtog Colding Award - Årets bachelorprojekt 2022 - for projektet *Effects on oxygen depletion and sulfide levels in marine sediments* (sammen med Emma Mørk-Pedersen).
 - Gennemførte et særligt kursusprojekt (10 ECTS) om *Effects of UV-A radiation on plant growth and secondary metabolites*, vurderet af vejleder som havende publikationsklar kvalitet.
 
 ## Faglige kompetencer

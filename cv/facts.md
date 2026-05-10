@@ -12,8 +12,8 @@ This file is the accuracy baseline for the website and CV drafts.
 - HeadAnalyser: publicly released via DTU Data and used in teaching and advisory practice
 - Teaching: Teaching Assistant in a Life Cycle Assessment course twice
 - Education: MSc Environmental Engineering, completed June 2025
-- MSc thesis: "Automatic Quality Control of Danish Stream Water Level Time Series Using Deep Learning"
-- Award: Co-recipient of Årets bachelorprojekt 2022 for "Effects on oxygen depletion and sulfide levels in marine sediments"
+- MSc thesis: "Automatic Quality Control of Danish Stream Water Level Time Series Using Deep Learning" in collaboration with SGAV
+- Award: Co-recipient of the Colding Award / Årets bachelorprojekt 2022 for "Effects on oxygen depletion and sulfide levels in marine sediments"
 - Special course project: project on UV-A radiation, plant growth, and secondary metabolites with a positive supervisor statement
 - GitHub profile: https://github.com/OliverBrincksLund
 
