@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="{{ doc.lang }}">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ doc.title }} - CV</title>
+  <link rel="stylesheet" href="cv.css">
+</head>
+<body>
+  <div class="cv-toolbar">
+    {% if doc.lang == "da" %}
+      <button type="button" class="cv-toolbar-btn" onclick="window.print()">Print / gem som PDF</button>
+      <a class="cv-toolbar-link" href="{{ doc.markdown_filename }}">Åbn Markdown-kilde</a>
+    {% else %}
+      <button type="button" class="cv-toolbar-btn" onclick="window.print()">Print / Save as PDF</button>
+      <a class="cv-toolbar-link" href="{{ doc.markdown_filename }}">Open Markdown source</a>
+    {% endif %}
+  </div>
+
+  <article class="cv-sheet">
+    <header class="cv-header">
+      <div class="cv-header-top"></div>
+      <div class="cv-header-grid">
+        <div class="cv-header-copy">
+          <h1>{{ doc.title }}</h1>
+          {% if doc.lead_blocks|length > 0 %}
+            <p class="cv-subtitle">{{ doc.lead_blocks[0].html | safe }}</p>
+          {% endif %}
+        </div>
+        {% if doc.lead_blocks|length > 1 %}
+          <p class="cv-contact">{{ doc.lead_blocks[1].html | safe }}</p>
+        {% endif %}
+      </div>
+    </header>
+
+    <div class="cv-layout">
+      <main class="cv-main">
+        {% for section in doc.main_sections %}
+          <section class="cv-section">
+            <h2>{{ section.heading }}</h2>
+            {% for block in section.blocks %}
+              {% if block["type"] == 'paragraph' %}
+                <div class="cv-block cv-paragraph">{{ block["html"] | safe }}</div>
+              {% elif block["type"] == 'list' %}
+                <ul class="cv-list">
+                  {% for item in block["items"] %}
+                    <li>{{ item | safe }}</li>
+                  {% endfor %}
+                </ul>
+              {% endif %}
+            {% endfor %}
+          </section>
+        {% endfor %}
+      </main>
+
+      <aside class="cv-side">
+        {% for section in doc.side_sections %}
+          <section class="cv-section cv-section-side">
+            <h2>{{ section.heading }}</h2>
+            {% for block in section.blocks %}
+              {% if block["type"] == 'paragraph' %}
+                <div class="cv-block cv-paragraph">{{ block["html"] | safe }}</div>
+              {% elif block["type"] == 'list' %}
+                <ul class="cv-list">
+                  {% for item in block["items"] %}
+                    <li>{{ item | safe }}</li>
+                  {% endfor %}
+                </ul>
+              {% endif %}
+            {% endfor %}
+          </section>
+        {% endfor %}
+      </aside>
+    </div>
+  </article>
+</body>
+</html>

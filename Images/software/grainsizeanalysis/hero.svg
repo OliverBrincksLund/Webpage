@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">GrainSizeAnalysis workflow overview</title>
+  <desc id="desc">Diagram showing GrainSizeAnalysis with distribution curves, hydraulic conductivity methods, sample comparison, and report generation.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#10141c"/>
+      <stop offset="55%" stop-color="#18202d"/>
+      <stop offset="100%" stop-color="#0b0f15"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#c49040"/>
+      <stop offset="100%" stop-color="#38a898"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <rect x="100" y="100" width="1400" height="700" rx="28" fill="#111824" stroke="#283244" stroke-width="2"/>
+  <rect x="148" y="148" width="1304" height="58" rx="14" fill="#171f2b"/>
+  <rect x="184" y="172" width="236" height="12" rx="6" fill="#3a4457"/>
+  <rect x="456" y="172" width="110" height="12" rx="6" fill="#303a4e"/>
+  <rect x="602" y="172" width="146" height="12" rx="6" fill="#303a4e"/>
+
+  <rect x="154" y="248" width="548" height="232" rx="20" fill="#152031" stroke="#314057" stroke-width="2"/>
+  <rect x="748" y="248" width="650" height="232" rx="20" fill="#152031" stroke="#314057" stroke-width="2"/>
+  <rect x="154" y="520" width="418" height="214" rx="20" fill="#152031" stroke="#314057" stroke-width="2"/>
+  <rect x="612" y="520" width="418" height="214" rx="20" fill="#152031" stroke="#314057" stroke-width="2"/>
+  <rect x="1070" y="520" width="328" height="214" rx="20" fill="#152031" stroke="#314057" stroke-width="2"/>
+
+  <path d="M206 430L292 370L364 392L456 316L536 336L650 270" fill="none" stroke="url(#accent)" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M834 426V310" stroke="#38a898" stroke-width="12" stroke-linecap="round"/>
+  <path d="M916 426V284" stroke="#c49040" stroke-width="12" stroke-linecap="round"/>
+  <path d="M998 426V334" stroke="#5fa7c4" stroke-width="12" stroke-linecap="round"/>
+  <path d="M1080 426V266" stroke="#d3b06e" stroke-width="12" stroke-linecap="round"/>
+  <path d="M1162 426V352" stroke="#89c0b5" stroke-width="12" stroke-linecap="round"/>
+
+  <g fill="#e8e3db" font-family="Segoe UI, Arial, sans-serif">
+    <text x="186" y="300" font-size="28" font-weight="700">Distribution Curves</text>
+    <text x="186" y="338" font-size="19" fill="#95a2b2">Semi-log grain-size plots with</text>
+    <text x="186" y="366" font-size="19" fill="#95a2b2">D-values, Cu, Cc, and classifications</text>
+
+    <text x="780" y="300" font-size="28" font-weight="700">Hydraulic Conductivity Methods</text>
+    <text x="780" y="338" font-size="19" fill="#95a2b2">Validated K-value calculations with</text>
+    <text x="780" y="366" font-size="19" fill="#95a2b2">method applicability and unit switching</text>
+
+    <text x="186" y="574" font-size="24" font-weight="700">Sample Comparison</text>
+    <text x="186" y="608" font-size="18" fill="#95a2b2">Overlay curves, compare</text>
+    <text x="186" y="636" font-size="18" fill="#95a2b2">parameters, and inspect trends</text>
+
+    <text x="644" y="574" font-size="24" font-weight="700">Classification Support</text>
+    <text x="644" y="608" font-size="18" fill="#95a2b2">ISO 14688 and USCS / ASTM</text>
+    <text x="644" y="636" font-size="18" fill="#95a2b2">with custom grain-size boundaries</text>
+
+    <text x="1102" y="574" font-size="24" font-weight="700">Reporting</text>
+    <text x="1102" y="608" font-size="18" fill="#95a2b2">PDF, DOCX, and export-ready</text>
+    <text x="1102" y="636" font-size="18" fill="#95a2b2">tables and figure outputs</text>
+  </g>
+
+  <text x="148" y="844" fill="#e8e3db" font-family="Segoe UI, Arial, sans-serif" font-size="44" font-weight="700">GrainSizeAnalysis</text>
+  <text x="148" y="882" fill="#8f9bab" font-family="Consolas, monospace" font-size="22">Python desktop tooling for grain-size interpretation, K-estimation, sample comparison, and reporting.</text>
+</svg>

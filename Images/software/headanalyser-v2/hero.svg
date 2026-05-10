@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">HeadAnalyser V2 system overview</title>
+  <desc id="desc">Diagram showing the modular structure of HeadAnalyser V2 with data tabs, plots, web maps, sensitivity analysis, and Geo.dk integration.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0d121a"/>
+      <stop offset="55%" stop-color="#141b26"/>
+      <stop offset="100%" stop-color="#0a0e15"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#c49040"/>
+      <stop offset="100%" stop-color="#38a898"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <rect x="96" y="96" width="1408" height="708" rx="28" fill="#101722" stroke="#273143" stroke-width="2"/>
+  <rect x="144" y="144" width="1312" height="60" rx="14" fill="#171f2c"/>
+  <rect x="182" y="168" width="212" height="12" rx="6" fill="#384356"/>
+  <rect x="432" y="168" width="128" height="12" rx="6" fill="#2f394d"/>
+  <rect x="598" y="168" width="98" height="12" rx="6" fill="#2f394d"/>
+
+  <rect x="144" y="246" width="238" height="486" rx="22" fill="#141c28" stroke="#2a3447" stroke-width="2"/>
+  <rect x="430" y="246" width="610" height="486" rx="22" fill="#141c28" stroke="#2a3447" stroke-width="2"/>
+  <rect x="1088" y="246" width="368" height="486" rx="22" fill="#141c28" stroke="#2a3447" stroke-width="2"/>
+
+  <rect x="472" y="296" width="526" height="156" rx="18" fill="#182232" stroke="#314056" stroke-width="2"/>
+  <rect x="472" y="490" width="248" height="190" rx="18" fill="#182232" stroke="#314056" stroke-width="2"/>
+  <rect x="750" y="490" width="248" height="190" rx="18" fill="#182232" stroke="#314056" stroke-width="2"/>
+
+  <rect x="1134" y="292" width="274" height="116" rx="18" fill="#182232" stroke="#314056" stroke-width="2"/>
+  <rect x="1134" y="430" width="274" height="116" rx="18" fill="#182232" stroke="#314056" stroke-width="2"/>
+  <rect x="1134" y="568" width="274" height="116" rx="18" fill="#182232" stroke="#314056" stroke-width="2"/>
+
+  <path d="M252 320h28c44 0 80 36 80 80v178c0 44 36 80 80 80h24" fill="none" stroke="url(#accent)" stroke-width="8" stroke-linecap="round"/>
+  <path d="M716 452v18c0 26-20 46-46 46h-98" fill="none" stroke="#38a898" stroke-width="6" stroke-linecap="round"/>
+  <path d="M808 452v18c0 26 20 46 46 46h98" fill="none" stroke="#c49040" stroke-width="6" stroke-linecap="round"/>
+  <path d="M1004 374h46c36 0 66 30 66 66v120" fill="none" stroke="#8aa4bb" stroke-width="6" stroke-linecap="round"/>
+
+  <g fill="#e7e2da" font-family="Segoe UI, Arial, sans-serif">
+    <text x="170" y="302" font-size="22" font-weight="700">Dataset Tabs</text>
+    <text x="170" y="338" font-size="18" fill="#94a1b2">Multiple datasets and</text>
+    <text x="170" y="366" font-size="18" fill="#94a1b2">analysis sessions</text>
+
+    <text x="504" y="340" font-size="28" font-weight="700">Plot and Map Workspace</text>
+    <text x="504" y="378" font-size="19" fill="#94a1b2">Hydraulic gradients, contour interpolation,</text>
+    <text x="504" y="406" font-size="19" fill="#94a1b2">interactive Leaflet maps, and statistics</text>
+
+    <text x="504" y="548" font-size="22" font-weight="700">Sensitivity Engine</text>
+    <text x="504" y="584" font-size="18" fill="#94a1b2">Scenario sweeps across</text>
+    <text x="504" y="612" font-size="18" fill="#94a1b2">uncertainty and filters</text>
+
+    <text x="782" y="548" font-size="22" font-weight="700">Geo.dk Integration</text>
+    <text x="782" y="584" font-size="18" fill="#94a1b2">Cross-sections, SVG</text>
+    <text x="782" y="612" font-size="18" fill="#94a1b2">alignment, geology context</text>
+
+    <text x="1162" y="336" font-size="21" font-weight="700">Core Logic</text>
+    <text x="1162" y="368" font-size="18" fill="#94a1b2">Calculations, import,</text>
+    <text x="1162" y="396" font-size="18" fill="#94a1b2">caching, coordinate transforms</text>
+
+    <text x="1162" y="474" font-size="21" font-weight="700">UI Layer</text>
+    <text x="1162" y="506" font-size="18" fill="#94a1b2">PyQt5, PyQtWebEngine,</text>
+    <text x="1162" y="534" font-size="18" fill="#94a1b2">custom window chrome</text>
+
+    <text x="1162" y="612" font-size="21" font-weight="700">Output and Reporting</text>
+    <text x="1162" y="644" font-size="18" fill="#94a1b2">Reports, export, map and</text>
+    <text x="1162" y="672" font-size="18" fill="#94a1b2">analysis deliverables</text>
+  </g>
+
+  <text x="144" y="842" fill="#e7e2da" font-family="Segoe UI, Arial, sans-serif" font-size="44" font-weight="700">HeadAnalyser V2</text>
+  <text x="144" y="880" fill="#8f9bab" font-family="Consolas, monospace" font-size="22">Modular PyQt5 rewrite focused on analysis, mapping, sensitivity testing, and geological context.</text>
+</svg>

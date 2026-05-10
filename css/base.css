@@ -1,0 +1,114 @@
+/* ============================================================
+   RESET & VARIABLES
+   ============================================================ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  /* Backgrounds */
+  --bg:        #09090f;
+  --bg-s:      #0d1019;
+  --bg-e:      #131620;
+  --bg-h:      #191d2c;
+  --bg-hh:     #1e2235;
+
+  /* Borders */
+  --bd:        #1a1e2f;
+  --bd-s:      #252b40;
+  --bd-m:      #2f3650;
+
+  /* Text */
+  --tx:        #dedad1;
+  --tx-2:      #737894;
+  --tx-3:      #5a6080;
+  --tx-4:      #454870;
+
+  /* Accents */
+  --gold:      #c49040;
+  --gold-l:    #d4ab68;
+  --gold-d:    #7a5820;
+  --gold-glow: rgba(196, 144, 64, 0.10);
+  --teal:      #38a898;
+  --teal-l:    #52bfb0;
+  --teal-glow: rgba(56, 168, 152, 0.10);
+
+  /* Typography */
+  --fd: 'Fraunces', Georgia, serif;
+  --fb: 'DM Sans', -apple-system, sans-serif;
+  --fm: 'JetBrains Mono', monospace;
+
+  /* Layout */
+  --sidebar-w: 224px;
+  --ease: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+html { font-size: 16px; }
+html, body { height: 100%; }
+
+body {
+  font-family: var(--fb);
+  background: var(--bg);
+  color: var(--tx);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow: hidden;
+}
+
+a { color: inherit; text-decoration: none; }
+ul { list-style: none; }
+img { display: block; max-width: 100%; }
+button { font-family: inherit; cursor: pointer; border: none; background: none; }
+
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--bd-s); border-radius: 2px; }
+::-webkit-scrollbar-thumb:hover { background: var(--bd-m); }
+
+/* ── Selection & Focus ──────────────────────────────────── */
+::selection { background: rgba(196, 144, 64, 0.22); color: var(--tx); }
+
+:focus-visible {
+  outline: 2px solid rgba(196, 144, 64, 0.5);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* ── Grain texture overlay ──────────────────────────────── */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0.038;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 160px 160px;
+}
+
+/* ============================================================
+   LIGHT MODE
+   Sidebar always stays dark (it reads from :root and is not
+   inside .main). Only .main and its children get overrides.
+   ============================================================ */
+body.light .main {
+  --bg:        #f2f0ea;
+  --bg-s:      #ede9e0;
+  --bg-e:      #e8e4db;
+  --bg-h:      #e1ddd3;
+  --bg-hh:     #d9d5ca;
+  --bd:        #cac6bb;
+  --bd-s:      #bcb8ac;
+  --bd-m:      #aca89c;
+  --tx:        #1c1a14;
+  --tx-2:      #4a4840;
+  --tx-3:      #7a7870;
+  --tx-4:      #9e9c8e;
+  --gold-glow: rgba(196, 144, 64, 0.15);
+  --teal-glow: rgba(56, 168, 152, 0.13);
+}
+
+/* Scrollbar in light main */
+body.light .main::-webkit-scrollbar-thumb         { background: #bcb8ac; }
+body.light .main::-webkit-scrollbar-thumb:hover   { background: #aca89c; }
+
+/* Grain slightly more visible on light */
+body.light::after { opacity: 0.055; }
