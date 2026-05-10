@@ -762,12 +762,24 @@ body.light .bg-scene .bg-arrows   { stroke: rgba(30,70,58,0.06);  }
 }
 
 /* ── CV btn icon + glow ────────────────────────────────────── */
+.cv-btn { margin-bottom: 0.4rem; }
 .cv-btn i { font-size: 0.78rem; }
 .cv-btn:hover {
   background: var(--gold);
   color: #09090f;
   border-color: var(--gold);
   box-shadow: 0 0 18px rgba(196,144,64,0.35);
+}
+.cv-btn-secondary {
+  border-color: var(--bd-s);
+  color: var(--tx-3);
+  background: transparent;
+}
+.cv-btn-secondary:hover {
+  background: var(--bg-h);
+  color: var(--tx-2);
+  border-color: var(--bd-m);
+  box-shadow: none;
 }
 
 /* ── Avail dot — smooth pulse ──────────────────────────────── */

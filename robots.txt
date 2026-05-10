@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://oliverbrinckslund.github.io/Webpage/
