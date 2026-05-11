@@ -14,8 +14,13 @@ SIDEBAR_HEADINGS = {
     "Uddannelse",
     "Tools",
     "Værktøjer",
+    "VÃ¦rktÃ¸jer",
+    "Tekniske værktøjer",
+    "Tekniske vÃ¦rktÃ¸jer",
     "Faglige kompetencer",
     "Kompetencer",
+    "Faglige highlights",
+    "Udvalgte faglige highlights",
 }
 LINK_RE = re.compile(r"\[([^\]]+)\]\(([^)]+)\)")
 STRONG_RE = re.compile(r"\*\*([^*]+)\*\*")
@@ -55,13 +60,15 @@ def parse_markdown(path: Path) -> dict:
 
     def current_blocks() -> list[dict]:
         if current_section is None:
-          return document["lead_blocks"]
+            return document["lead_blocks"]
         return current_section["blocks"]
 
     def flush_list() -> None:
         nonlocal in_list, list_items
         if in_list and list_items:
-            current_blocks().append({"type": "list", "items": [parse_inline(item) for item in list_items]})
+            current_blocks().append(
+                {"type": "list", "items": [parse_inline(item) for item in list_items]}
+            )
         in_list = False
         list_items = []
 
@@ -100,8 +107,12 @@ def parse_markdown(path: Path) -> dict:
     flush_paragraph(paragraph_lines, current_blocks())
     flush_list()
 
-    document["main_sections"] = [section for section in document["sections"] if section["heading"] not in SIDEBAR_HEADINGS]
-    document["side_sections"] = [section for section in document["sections"] if section["heading"] in SIDEBAR_HEADINGS]
+    document["main_sections"] = [
+        section for section in document["sections"] if section["heading"] not in SIDEBAR_HEADINGS
+    ]
+    document["side_sections"] = [
+        section for section in document["sections"] if section["heading"] in SIDEBAR_HEADINGS
+    ]
     return document
 
 

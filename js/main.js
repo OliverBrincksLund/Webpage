@@ -172,7 +172,12 @@
     themeLabel.textContent = isLight ? 'Dark mode' : 'Light mode';
   }
 
-  if (localStorage.getItem('theme') === 'light') document.body.classList.add('light');
+  const savedTheme = localStorage.getItem('theme');
+  if (savedTheme === 'dark') {
+    document.body.classList.remove('light');
+  } else {
+    document.body.classList.add('light');
+  }
   syncThemeToggle();
 
   themeToggle.addEventListener('click', () => {
