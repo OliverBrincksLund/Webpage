@@ -1,0 +1,169 @@
+/* =====================================================
+   CAROUSELS
+   ===================================================== */
+
+.project-carousel,
+.plot-carousel,
+.map-carousel {
+  position: relative;
+  margin: 1rem 0 0;
+  padding: 0.25rem 0;
+  background: none;
+  backdrop-filter: none;
+  box-shadow: none;
+  border-radius: 0;
+  overflow: visible;
+}
+
+/* Containers */
+.project-cards-container,
+.plot-cards-container,
+.map-cards-container {
+  overflow: hidden;
+  border-radius: var(--radius);
+  padding: 0.5rem 0;
+}
+
+/* Card strips */
+.project-cards,
+.plot-cards,
+.map-cards {
+  display: flex;
+  gap: 1rem;
+  transition: transform 0.4s var(--ease);
+  padding: 0 0.25rem;
+  will-change: transform;
+}
+
+/* ---- Individual card sizing ---- */
+
+/* Desktop card widths */
+@media (min-width: 992px) {
+  .project-card { flex: 0 0 calc(33.333% - 0.7rem); max-width: calc(33.333% - 0.7rem); }
+  .plot-card    { flex: 0 0 calc(46% - 0.55rem);    max-width: calc(46% - 0.55rem);    }
+  .map-card     { flex: 0 0 calc(42% - 0.6rem);     max-width: calc(42% - 0.6rem);     }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  .project-card,
+  .plot-card,
+  .map-card { flex: 0 0 calc(50% - 0.5rem); max-width: calc(50% - 0.5rem); }
+}
+
+@media (max-width: 767px) {
+  .project-card,
+  .plot-card,
+  .map-card { flex: 0 0 88%; max-width: 88%; }
+}
+
+/* Image heights */
+.project-card img {
+  height: 185px;
+  object-fit: cover;
+}
+
+.plot-card img {
+  height: 220px;
+  object-fit: contain;
+  background: var(--bg-deep);
+}
+
+.map-card img {
+  height: 185px;
+  object-fit: cover;
+}
+
+/* Before-top accent bar on cards */
+.project-card::before,
+.plot-card::before,
+.map-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, var(--gold), var(--teal));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s var(--ease);
+  z-index: 1;
+}
+
+.project-card:hover::before,
+.plot-card:hover::before,
+.map-card:hover::before {
+  transform: scaleX(1);
+}
+
+/* ---- Arrow buttons ---- */
+.carousel-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  background: var(--bg-elevated) !important;
+  border: 1px solid var(--border) !important;
+  color: var(--text-secondary) !important;
+  border-radius: 50% !important;
+  width: 34px !important;
+  height: 34px !important;
+  min-width: unset !important;
+  padding: 0 !important;
+  font-size: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: none !important;
+  transition: var(--transition);
+  line-height: 1;
+}
+
+.carousel-arrow:hover {
+  background: var(--bg-hover) !important;
+  border-color: var(--gold-dim) !important;
+  color: var(--gold-light) !important;
+  transform: translateY(-50%) !important;
+  box-shadow: none !important;
+}
+
+.carousel-arrow:active {
+  transform: translateY(-50%) scale(0.95) !important;
+}
+
+.carousel-arrow.prev { left: -16px; }
+.carousel-arrow.next { right: -16px; }
+
+/* Hidden state */
+.carousel-arrow.hidden {
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+/* Project tags */
+.project-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin-top: 0.5rem;
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 767px) {
+  .project-carousel,
+  .plot-carousel,
+  .map-carousel {
+    margin: 0.75rem 0 0;
+  }
+
+  .project-cards,
+  .plot-cards,
+  .map-cards { gap: 0.75rem; }
+
+  .carousel-arrow { width: 30px !important; height: 30px !important; }
+  .carousel-arrow.prev { left: -12px; }
+  .carousel-arrow.next { right: -12px; }
+
+  .project-card img,
+  .map-card img { height: 160px; }
+  .plot-card img { height: 180px; }
+}

@@ -1,0 +1,129 @@
+/* =====================================================
+   SERVICES SECTION
+   ===================================================== */
+
+.services-content {
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 2.5rem;
+  max-width: 880px;
+  margin: 0 auto;
+  text-align: left;
+  box-shadow: none;
+}
+
+#services h2 {
+  color: var(--text);
+  margin-bottom: 2rem;
+}
+
+/* Column headings */
+.services-content h3 {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 1rem;
+}
+
+/* Services list */
+.services-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.services-list li {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.8rem 0;
+  border-bottom: 1px solid var(--border-faint);
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  transition: color var(--transition);
+  margin-bottom: 0;
+}
+
+.services-list li:last-child { border-bottom: none; }
+.services-list li:hover { color: var(--text); }
+
+.services-list i {
+  color: var(--gold);
+  font-size: 0.85rem;
+  width: 1.1rem;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+/* Process list */
+.process-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  counter-reset: process-counter;
+}
+
+.process-list li {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.8rem 0;
+  border-bottom: 1px solid var(--border-faint);
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  counter-increment: process-counter;
+  margin-bottom: 0;
+}
+
+.process-list li:last-child { border-bottom: none; }
+
+.process-list li::before {
+  content: counter(process-counter, decimal-leading-zero);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.05em;
+  color: var(--gold);
+  opacity: 0.65;
+  flex-shrink: 0;
+  min-width: 1.8rem;
+  background: none;
+  width: auto;
+  height: auto;
+  border-radius: 0;
+  display: inline;
+  font-weight: 400;
+}
+
+/* CTA */
+.cta-container {
+  text-align: center;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border-faint);
+  margin-top: 2rem;
+}
+
+/* Bootstrap row in services */
+.services-content .row {
+  gap: 0;
+  margin: 0 -0.75rem;
+  text-align: left;
+}
+
+.services-content .col-md-5 {
+  padding: 0 0.75rem;
+}
+
+@media (max-width: 768px) {
+  .services-content {
+    padding: 1.75rem 1.25rem;
+  }
+
+  .services-list,
+  .process-list {
+    margin-bottom: 1.5rem;
+  }
+}

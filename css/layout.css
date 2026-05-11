@@ -1,6 +1,4 @@
-/* ============================================================
-   APP SHELL
-   ============================================================ */
+
 .shell {
   display: grid;
   grid-template-columns: var(--sidebar-w) 1fr;
@@ -8,9 +6,6 @@
   overflow: hidden;
 }
 
-/* ============================================================
-   SIDEBAR
-   ============================================================ */
 .sidebar {
   background: linear-gradient(180deg, #111525 0%, var(--bg-s) 35%, #080b12 100%);
   border-right: 1px solid var(--bd);
@@ -21,7 +16,6 @@
   z-index: 10;
 }
 
-/* Identity block */
 .sidebar-id {
   padding: 1.15rem 1.1rem 0.95rem;
   border-bottom: 1px solid var(--bd);
@@ -62,7 +56,6 @@
   display: inline;
 }
 
-/* Nav scroll area */
 .sidebar-nav {
   flex: 1;
   overflow-y: auto;
@@ -72,7 +65,6 @@
   scrollbar-color: var(--bd-s) transparent;
 }
 
-/* Section group */
 .nav-group { margin-bottom: 0.12rem; }
 
 .nav-group-label {
@@ -85,7 +77,6 @@
   user-select: none;
 }
 
-/* Nav items */
 .nav-item {
   display: flex;
   align-items: center;
@@ -142,14 +133,12 @@
 .nav-item.active .nav-dot,
 .nav-item:hover .nav-dot { background: var(--gold); }
 
-/* Sub-items (indented, smaller) */
 .nav-item.sub {
   padding-left: 1.75rem;
   font-size: 0.69rem;
   color: var(--tx-3);
 }
 
-/* Child-items (further indented, under a sub) */
 .nav-item.child {
   padding-left: 2.35rem;
   font-size: 0.64rem;
@@ -165,14 +154,12 @@
 .nav-item.sub:hover { color: var(--tx-2); }
 .nav-item.sub.active { color: var(--tx); }
 
-/* Separator */
 .nav-sep {
   height: 1px;
   background: var(--bd);
   margin: 0.22rem 0;
 }
 
-/* Sidebar footer */
 .sidebar-foot {
   padding: 0.85rem 1.1rem 0.95rem;
   border-top: 1px solid var(--bd);
@@ -234,9 +221,6 @@
   border-color: var(--gold);
 }
 
-/* ============================================================
-   MAIN CONTENT AREA
-   ============================================================ */
 .main {
   overflow-y: auto;
   overflow-x: hidden;
@@ -244,9 +228,6 @@
   background: var(--bg);
 }
 
-/* ============================================================
-   PANELS
-   ============================================================ */
 .panel {
   display: none;
   min-height: 100vh;
@@ -278,12 +259,6 @@
   to   { opacity: 1; transform: translateY(0); }
 }
 
-/* ── Initial load stagger (home panel only, fires once) ──
-   Explicit opacity:0 prevents the 1-frame FOUC that occurs
-   when relying solely on animation-fill-mode:backwards.
-   Using `forwards` keeps elements visible after animation
-   ends; removing is-init at 1.6s restores the default state.
-   ─────────────────────────────────────────────────────── */
 body.is-init #panel-home .home-eyebrow,
 body.is-init #panel-home .home-name,
 body.is-init #panel-home .home-degree,
@@ -299,9 +274,6 @@ body.is-init #panel-home .home-tagline             { animation: fadeUp 0.45s var
 body.is-init #panel-home .p-section:nth-child(2)   { animation: fadeUp 0.5s var(--ease) 0.66s forwards; }
 body.is-init #panel-home .p-section:nth-child(3)   { animation: fadeUp 0.5s var(--ease) 0.78s forwards; }
 
-/* ============================================================
-   PANEL LAYOUT HELPERS
-   ============================================================ */
 .panel-wrap {
   max-width: 960px;
   margin: 0 auto;
@@ -341,7 +313,6 @@ body.is-init #panel-home .p-section:nth-child(3)   { animation: fadeUp 0.5s var(
   max-width: 560px;
 }
 
-/* Section within a panel */
 .p-section {
   margin-bottom: 3rem;
 }
@@ -375,9 +346,6 @@ body.is-init #panel-home .p-section:nth-child(3)   { animation: fadeUp 0.5s var(
   background: var(--bd-s);
 }
 
-/* ============================================================
-   PANEL: HOME
-   ============================================================ */
 #panel-home {
   min-height: 100vh;
   position: relative;
@@ -469,7 +437,6 @@ body.is-init #panel-home .p-section:nth-child(3)   { animation: fadeUp 0.5s var(
 
 .home-tagline-sep { color: var(--bd-m); }
 
-/* Discipline Cards */
 .disc-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -517,7 +484,6 @@ body.is-init #panel-home .p-section:nth-child(3)   { animation: fadeUp 0.5s var(
   margin-bottom: 1rem;
 }
 
-/* Tech Stack */
 .tech-stack {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -537,9 +503,6 @@ body.is-init #panel-home .p-section:nth-child(3)   { animation: fadeUp 0.5s var(
   margin-bottom: 0;
 }
 
-/* ============================================================
-   MOBILE TOGGLE
-   ============================================================ */
 .mobile-toggle {
   display: none;
   position: fixed;
@@ -566,9 +529,6 @@ body.is-init #panel-home .p-section:nth-child(3)   { animation: fadeUp 0.5s var(
   transition: all 0.2s;
 }
 
-/* ============================================================
-   RESPONSIVE
-   ============================================================ */
 @media (max-width: 1200px) {
   :root { --sidebar-w: 196px; }
   .sidebar-id { padding: 1rem 1rem 0.85rem; }
@@ -723,7 +683,6 @@ body.is-init #panel-home .p-section:nth-child(3)   { animation: fadeUp 0.5s var(
   }
 }
 
-/* ── Theme toggle (sits in sidebar footer) ────────────────── */
 .theme-toggle {
   display: flex;
   align-items: center;
@@ -758,7 +717,6 @@ body.is-init #panel-home .p-section:nth-child(3)   { animation: fadeUp 0.5s var(
   transition: transform 0.22s var(--ease), background 0.22s;
 }
 
-/* Active (light on) state — tracked on body, sidebar reads :root */
 body.light .toggle-track {
   background: rgba(196, 144, 64, 0.2);
   border-color: rgba(196, 144, 64, 0.5);
@@ -781,13 +739,6 @@ body.light .toggle-thumb {
 
 body.light .toggle-label { color: var(--gold-l); }
 
-/* ============================================================
-   GIS / DATA BACKGROUND SCENE
-   Sticky height-0 trick: sticks to top of .main scroll area,
-   SVG is absolutely positioned at 100vh — always in viewport.
-   Panels (z-index:2) sit above; transparent panel areas let
-   the pattern show through.
-   ============================================================ */
 .bg-scene {
   position: sticky;
   top: 0;
@@ -795,16 +746,23 @@ body.light .toggle-label { color: var(--gold-l); }
   overflow: visible;
   pointer-events: none;
   z-index: 1;
+  isolation: isolate;
 }
 
-.bg-scene svg {
+.bg-scene::before,
+.bg-scene::after {
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100vh;
-  display: block;
+  pointer-events: none;
+  opacity: 0;
 }
+
+.bg-scene::before { z-index: 0; }
+.bg-scene::after { z-index: 1; }
 
 .bg-scene canvas {
   position: absolute;
@@ -814,39 +772,57 @@ body.light .toggle-label { color: var(--gold-l); }
   height: 100vh;
   display: block;
   pointer-events: none;
+  z-index: 2;
 }
 
 .bg-contour-glow {
-  opacity: 0.34;
-  filter: blur(10px);
+  opacity: 0.24;
+  filter: blur(12px);
 }
 
 .bg-contour-canvas {
-  opacity: 0.82;
+  opacity: 0.78;
 }
 
-/* Dark mode */
-.bg-scene .bg-grid     { stroke: rgba(255,255,255,0.022); fill: none; }
-.bg-scene .bg-contours { stroke: rgba(255,255,255,0.042); fill: none; }
-.bg-scene .bg-triang   { stroke: rgba(255,255,255,0.026); fill: none; }
-.bg-scene .bg-points   { fill:   rgba(255,255,255,0.072); }
-.bg-scene .bg-labels   { fill:   rgba(255,255,255,0.052); }
-.bg-scene .bg-arrows   { stroke: rgba(255,255,255,0.038); }
+body.light .bg-contour-glow {
+  opacity: 0.18;
+}
 
-/* Light mode — slight teal tint echoes the GIS palette */
-body.light .bg-scene .bg-grid     { stroke: rgba(30,70,58,0.05); }
-body.light .bg-scene .bg-contours { stroke: rgba(30,70,58,0.07); }
-body.light .bg-scene .bg-triang   { stroke: rgba(30,70,58,0.046); }
-body.light .bg-scene .bg-points   { fill:   rgba(30,70,58,0.10);  }
-body.light .bg-scene .bg-labels   { fill:   rgba(30,70,58,0.07);  }
-body.light .bg-scene .bg-arrows   { stroke: rgba(30,70,58,0.06);  }
+body.light .bg-contour-canvas {
+  opacity: 0.7;
+}
 
-/* ── Sidebar monogram ──────────────────────────────────────── */
+.bg-scene::before {
+  opacity: 0.82;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+  background-size: 92px 92px;
+}
+
+.bg-scene::after {
+  opacity: 0.55;
+  background:
+    linear-gradient(135deg, rgba(255,255,255,0.05), rgba(255,255,255,0) 38%),
+    radial-gradient(70% 58% at 78% 16%, rgba(255,255,255,0.035), rgba(255,255,255,0) 72%);
+}
+
+body.light .bg-scene::before {
+  background-image:
+    linear-gradient(rgba(118,124,116,0.052) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(118,124,116,0.052) 1px, transparent 1px);
+}
+
+body.light .bg-scene::after {
+  background:
+    linear-gradient(135deg, rgba(125,134,124,0.05), rgba(125,134,124,0) 38%),
+    radial-gradient(70% 58% at 78% 16%, rgba(125,134,124,0.03), rgba(125,134,124,0) 72%);
+}
+
 .sidebar-monogram {
   display: none;
 }
 
-/* ── Nav FA icons ──────────────────────────────────────────── */
 .nav-item i {
   width: 15px;
   font-size: 0.68rem;
@@ -866,7 +842,6 @@ body.light .bg-scene .bg-arrows   { stroke: rgba(30,70,58,0.06);  }
   margin-right: 0.3rem;
 }
 
-/* ── Sidebar social links ──────────────────────────────────── */
 .sidebar-social {
   display: flex;
   gap: 0.5rem;
@@ -891,7 +866,6 @@ body.light .bg-scene .bg-arrows   { stroke: rgba(30,70,58,0.06);  }
   background: var(--gold-glow);
 }
 
-/* ── CV btn icon + glow ────────────────────────────────────── */
 .cv-btn { margin-bottom: 0; }
 .cv-btn i { font-size: 0.72rem; }
 .cv-btn:hover {
@@ -912,14 +886,12 @@ body.light .bg-scene .bg-arrows   { stroke: rgba(30,70,58,0.06);  }
   box-shadow: none;
 }
 
-/* ── Avail dot — smooth pulse ──────────────────────────────── */
 .avail-dot { animation: avail-pulse 2.2s ease-in-out infinite; }
 @keyframes avail-pulse {
   0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(56,168,152,0.5); }
   50%       { opacity: 0.7; box-shadow: 0 0 0 4px rgba(56,168,152,0); }
 }
 
-/* Mobile: .main doesn't scroll so sticky won't work — use fixed */
 @media (max-width: 680px) {
   .bg-scene {
     position: fixed;
@@ -928,6 +900,10 @@ body.light .bg-scene .bg-arrows   { stroke: rgba(30,70,58,0.06);  }
     right: 0;
     height: calc(100vh - 52px);
     overflow: hidden;
+  }
+  .bg-scene::before,
+  .bg-scene::after {
+    height: 100%;
   }
   .bg-scene svg,
   .bg-scene canvas { width: 100%; height: 100%; position: static; }

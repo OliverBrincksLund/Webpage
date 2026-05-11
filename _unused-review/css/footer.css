@@ -1,0 +1,116 @@
+/* =====================================================
+   FOOTER / CONTACT
+   ===================================================== */
+
+footer[role="contentinfo"] {
+  background: var(--bg-deep);
+  border-top: 1px solid var(--border-faint);
+  padding: 4rem 2rem 2.5rem;
+}
+
+.footer-content {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 3rem;
+  align-items: start;
+  padding-bottom: 2.5rem;
+  border-bottom: 1px solid var(--border-faint);
+  margin-bottom: 2rem;
+}
+
+/* Contact block */
+.contact-info h3 {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 1.25rem;
+}
+
+.contact-info p {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  margin-bottom: 0.6rem;
+  line-height: 1.4;
+}
+
+.contact-info p i {
+  color: var(--gold);
+  width: 1rem;
+  text-align: center;
+  flex-shrink: 0;
+  font-size: 0.8rem;
+}
+
+.contact-info a {
+  color: var(--text-secondary);
+  transition: color var(--transition);
+}
+
+.contact-info a:hover { color: var(--gold-light); }
+
+/* Social icons */
+.social-links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  align-items: flex-end;
+  padding-top: 0.25rem;
+}
+
+.social-links a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  transition: var(--transition);
+  text-decoration: none;
+}
+
+.social-links a:hover {
+  border-color: var(--gold-dim);
+  color: var(--gold-light);
+  background: var(--gold-glow);
+}
+
+/* Copyright */
+.copyright {
+  max-width: 1100px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.copyright p {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 768px) {
+  footer[role="contentinfo"] { padding: 3rem 1.25rem 2rem; }
+
+  .footer-content {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .social-links {
+    flex-direction: row;
+    align-items: center;
+  }
+}

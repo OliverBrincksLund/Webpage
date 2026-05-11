@@ -1,4 +1,4 @@
-const CACHE_NAME = 'oliver-portfolio-v2';
+const CACHE_NAME = 'oliver-portfolio-v5';
 const BASE = '/Webpage';
 const urlsToCache = [
   `${BASE}/`,
@@ -8,6 +8,7 @@ const urlsToCache = [
   `${BASE}/css/components.css`,
   `${BASE}/css/about.css`,
   `${BASE}/js/site-content.js`,
+  `${BASE}/js/contour-background.js`,
   `${BASE}/js/main.js`,
 ];
 
