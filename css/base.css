@@ -37,7 +37,7 @@
   --fm: 'JetBrains Mono', monospace;
 
   /* Layout */
-  --sidebar-w: 224px;
+  --sidebar-w: 208px;
   --ease: cubic-bezier(0.4, 0, 0.2, 1);
 }
 

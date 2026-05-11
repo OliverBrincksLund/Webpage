@@ -7,13 +7,8 @@ const urlsToCache = [
   `${BASE}/css/layout.css`,
   `${BASE}/css/components.css`,
   `${BASE}/css/about.css`,
+  `${BASE}/js/site-content.js`,
   `${BASE}/js/main.js`,
-  `${BASE}/js/navigation.js`,
-  `${BASE}/js/carousel.js`,
-  `${BASE}/js/gallery.js`,
-  `${BASE}/js/projects.js`,
-  `${BASE}/js/dataViz.js`,
-  `${BASE}/js/perlin-noise.js`,
 ];
 
 self.addEventListener('install', function(event) {

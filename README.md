@@ -155,7 +155,13 @@ A professional, high-performance portfolio website showcasing data science proje
 1. **Colors**: Update CSS variables in `css/main.css`
 2. **Content**: Edit `index.html` for text and project information
 3. **Images**: Replace images in the `Images/` directory
-4. **Projects**: Update project data in `js/projects.js`
+4. **Projects / gallery / nav metadata**: Update `js/site-content.js`
+
+### Content architecture
+- `js/site-content.js` is the central registry for sidebar navigation labels, selected-work cards, and gallery items.
+- `index.html` still contains the long-form panel content for each project/software entry.
+- To add a new entry cleanly: add the panel markup in `index.html`, then add its nav/card metadata in `js/site-content.js`.
+- `js/main.js` renders the sidebar, selected-work section, and gallery from `js/site-content.js`.
 
 ## 📱 Browser Support
 
