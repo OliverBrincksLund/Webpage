@@ -11,24 +11,26 @@
 
   const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
   const noise = new PerlinNoise();
-  const MARKER_CONFIG = {
-    step: 6,
-    maxCount: 5,
-    prominence: 9
-  };
   const state = {
     width: 0,
     height: 0,
     dpr: 1,
     cols: 0,
     rows: 0,
-    field: [],
-    zOffset: Math.random() * 100,
-    lastFrameTime: 0,
-    frameInterval: 1000 / 18,
+    values: [],
+    zOffset: 0,
+    noiseMin: 100,
+    noiseMax: 0,
+    currentThreshold: 0,
     staticRendered: false,
+    lastFrameTime: 0,
+    frameInterval: 1000 / 12,
     theme: getTheme()
   };
+
+  const thresholdIncrement = 4;
+  const thickLineThresholdMultiple = 4;
+  const baseZOffset = 0.00024;
 
   function PerlinNoise() {
     this.p = [];
@@ -85,296 +87,198 @@
   };
 
   function getTheme() {
-    return document.body.classList.contains("light")
-      ? {
-          minorColor: "rgba(109, 124, 115, 0.074)",
-          majorColor: "rgba(86, 103, 95, 0.146)",
-          glowColor: "rgba(167, 184, 174, 0.18)",
-          markerFill: "rgba(108, 122, 111, 0.26)",
-          markerRing: "rgba(122, 137, 126, 0.14)"
-        }
-      : {
-          minorColor: "rgba(121, 141, 176, 0.072)",
-          majorColor: "rgba(160, 184, 218, 0.132)",
-          glowColor: "rgba(122, 157, 204, 0.17)",
-          markerFill: "rgba(150, 178, 214, 0.25)",
-          markerRing: "rgba(118, 150, 192, 0.13)"
-        };
+    if (document.body.classList.contains("light")) {
+      return {
+        minorColor: "rgba(122, 129, 144, 0.048)",
+        majorColor: "rgba(109, 118, 136, 0.102)",
+        glowColor: "rgba(178, 186, 198, 0.12)"
+      };
+    }
+
+    return {
+      minorColor: "rgba(92, 108, 164, 0.07)",
+      majorColor: "rgba(122, 144, 214, 0.17)",
+      glowColor: "rgba(115, 144, 232, 0.28)"
+    };
   }
 
-  function getCellSize(width) {
-    if (width < 700) return 14;
-    if (width < 1180) return 11;
-    return 9;
-  }
-
-  function setCanvasSize(canvas, ctx, width, height, dpr) {
-    canvas.width = Math.round(width * dpr);
-    canvas.height = Math.round(height * dpr);
-    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    ctx.lineCap = "round";
-    ctx.lineJoin = "round";
-    ctx.imageSmoothingEnabled = true;
+  function getResolution(width) {
+    if (width < 700) return 8.8;
+    if (width < 1180) return 7.4;
+    return 6.2;
   }
 
   function resize() {
     const rect = sharpCanvas.getBoundingClientRect();
     const width = Math.max(1, Math.round(rect.width || window.innerWidth));
     const height = Math.max(1, Math.round(rect.height || window.innerHeight));
-    const dpr = Math.min(window.devicePixelRatio || 1, 1.75);
+    const dpr = Math.min(window.devicePixelRatio || 1, 1.25);
 
     if (width === state.width && height === state.height && dpr === state.dpr) return;
 
     state.width = width;
     state.height = height;
     state.dpr = dpr;
-    state.cols = Math.floor(width / getCellSize(width)) + 2;
-    state.rows = Math.floor(height / getCellSize(width)) + 2;
-    state.field = new Array(state.rows);
 
-    setCanvasSize(sharpCanvas, sharpCtx, width, height, dpr);
-    setCanvasSize(glowCanvas, glowCtx, width, height, dpr);
+    sharpCanvas.width = glowCanvas.width = Math.round(width * dpr);
+    sharpCanvas.height = glowCanvas.height = Math.round(height * dpr);
+
+    sharpCtx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    glowCtx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+    sharpCtx.lineCap = "round";
+    sharpCtx.lineJoin = "round";
+    glowCtx.lineCap = "round";
+    glowCtx.lineJoin = "round";
+
+    const resolution = getResolution(width);
+    state.cols = Math.floor(width / resolution) + 1;
+    state.rows = Math.floor(height / resolution) + 1;
+    state.values = new Array(state.rows + 1);
     state.staticRendered = false;
   }
 
-  function fillField() {
-    let min = Infinity;
-    let max = -Infinity;
-    const z = state.zOffset;
+  function generateNoise() {
+    state.noiseMin = 100;
+    state.noiseMax = 0;
 
     for (let y = 0; y < state.rows; y += 1) {
-      const row = new Array(state.cols);
-      const ny = y * 0.058;
-      for (let x = 0; x < state.cols; x += 1) {
-        const nx = x * 0.058;
-        const warpX = noise.sample(nx * 0.25 + 31, ny * 0.25 + 77, z * 0.36);
-        const warpY = noise.sample(nx * 0.25 + 113, ny * 0.25 + 19, z * 0.34);
-        const sx = nx + warpX * 0.58;
-        const sy = ny + warpY * 0.58;
-        const broad = (noise.sample(sx, sy, z) + 1) * 0.5;
-        const detail = (noise.sample(sx * 1.14 + 20, sy * 1.14 + 20, z * 1.08 + 40) + 1) * 0.5;
-        const ridge = (noise.sample(sx * 0.38 + 60, sy * 0.38 + 60, z * 0.7 + 10) + 1) * 0.5;
-        const value = (broad * 100) + (detail * 9) + (ridge * 4);
+      const row = new Array(state.cols + 1);
+      for (let x = 0; x <= state.cols; x += 1) {
+        const n1 = ((noise.sample(x * 0.018, y * 0.018, state.zOffset) + 1) * 0.5) * 100;
+        const n2 = ((noise.sample(x * 0.04, y * 0.04, (state.zOffset * 1.3) + 100) + 1) * 0.5) * 30;
+        const value = n1 + n2;
         row[x] = value;
-        if (value < min) min = value;
-        if (value > max) max = value;
+        if (value < state.noiseMin) state.noiseMin = value;
+        if (value > state.noiseMax) state.noiseMax = value;
       }
-      state.field[y] = row;
+      state.values[y] = row;
     }
-
-    return { min, max };
   }
 
-  function interpolate(a, b, threshold) {
-    return a === b ? 0 : (threshold - a) / (b - a);
+  function interpolate(v0, v1) {
+    return v0 === v1 ? 0 : (state.currentThreshold - v0) / (v1 - v0);
   }
 
   function binaryToType(nw, ne, se, sw) {
     return (nw << 3) | (ne << 2) | (se << 1) | sw;
   }
 
-  function applyAlpha(rgba, factor) {
-    return rgba.replace(/[\d.]+\)\s*$/, function (match) {
-      const base = parseFloat(match.slice(0, -1));
-      return String((base * factor).toFixed(3)) + ")";
-    });
-  }
-
-  function traceSegment(ctx, from, to) {
+  function addSegment(ctx, from, to) {
     ctx.moveTo(from[0], from[1]);
     ctx.lineTo(to[0], to[1]);
   }
 
-  function marchCell(ctx, x, y, threshold, size) {
-    const nw = state.field[y][x];
-    const ne = state.field[y][x + 1];
-    const se = state.field[y + 1][x + 1];
-    const sw = state.field[y + 1][x];
-    const type = binaryToType(
-      nw > threshold ? 1 : 0,
-      ne > threshold ? 1 : 0,
-      se > threshold ? 1 : 0,
-      sw > threshold ? 1 : 0
-    );
+  function marchCell(ctx, gridValue, x, y, resolution) {
+    const nw = state.values[y][x];
+    const ne = state.values[y][x + 1];
+    const se = state.values[y + 1][x + 1];
+    const sw = state.values[y + 1][x];
+    const px = x * resolution;
+    const py = y * resolution;
+    const a = [px + (resolution * interpolate(nw, ne)), py];
+    const b = [px + resolution, py + (resolution * interpolate(ne, se))];
+    const c = [px + (resolution * interpolate(sw, se)), py + resolution];
+    const d = [px, py + (resolution * interpolate(nw, sw))];
 
-    if (type === 0 || type === 15) return;
-
-    const px = x * size;
-    const py = y * size;
-    const a = [px + size * interpolate(nw, ne, threshold), py];
-    const b = [px + size, py + size * interpolate(ne, se, threshold)];
-    const c = [px + size * interpolate(sw, se, threshold), py + size];
-    const d = [px, py + size * interpolate(nw, sw, threshold)];
-
-    switch (type) {
+    switch (gridValue) {
       case 1:
       case 14:
-        traceSegment(ctx, d, c);
+        addSegment(ctx, d, c);
         break;
       case 2:
       case 13:
-        traceSegment(ctx, b, c);
+        addSegment(ctx, b, c);
         break;
       case 3:
       case 12:
-        traceSegment(ctx, d, b);
+        addSegment(ctx, d, b);
         break;
       case 4:
       case 11:
-        traceSegment(ctx, a, b);
+        addSegment(ctx, a, b);
         break;
       case 5:
-        traceSegment(ctx, d, a);
-        traceSegment(ctx, c, b);
+        addSegment(ctx, d, a);
+        addSegment(ctx, c, b);
         break;
       case 6:
       case 9:
-        traceSegment(ctx, c, a);
+        addSegment(ctx, c, a);
         break;
       case 7:
       case 8:
-        traceSegment(ctx, d, a);
+        addSegment(ctx, d, a);
         break;
       case 10:
-        traceSegment(ctx, a, b);
-        traceSegment(ctx, c, d);
+        addSegment(ctx, a, b);
+        addSegment(ctx, c, d);
         break;
       default:
         break;
     }
   }
 
-  function clearCanvases() {
-    sharpCtx.clearRect(0, 0, state.width, state.height);
-    glowCtx.clearRect(0, 0, state.width, state.height);
-  }
+  function renderAtThreshold(resolution) {
+    const isMajor = state.currentThreshold % (thresholdIncrement * thickLineThresholdMultiple) === 0;
+    const mid = (state.noiseMin + state.noiseMax) * 0.5;
+    const span = ((state.noiseMax - state.noiseMin) * 0.5) + 0.1;
+    const distanceFromMid = Math.abs(state.currentThreshold - mid) / span;
+    const brightnessFactor = Math.max(0.15, 1 - (distanceFromMid * 0.7));
 
-  function collectPeakMarkers(range, size) {
-    const markers = [];
-    const edgePad = 2;
+    sharpCtx.beginPath();
+    if (isMajor) glowCtx.beginPath();
 
-    for (let y = edgePad; y < state.rows - edgePad; y += MARKER_CONFIG.step) {
-      for (let x = edgePad; x < state.cols - edgePad; x += MARKER_CONFIG.step) {
-        const center = state.field[y][x];
-        let isPeak = true;
-        let localMax = -Infinity;
+    for (let y = 0; y < state.rows - 1; y += 1) {
+      for (let x = 0; x < state.cols - 1; x += 1) {
+        const nw = state.values[y][x] > state.currentThreshold ? 1 : 0;
+        const ne = state.values[y][x + 1] > state.currentThreshold ? 1 : 0;
+        const se = state.values[y + 1][x + 1] > state.currentThreshold ? 1 : 0;
+        const sw = state.values[y + 1][x] > state.currentThreshold ? 1 : 0;
 
-        for (let oy = -1; oy <= 1; oy += 1) {
-          for (let ox = -1; ox <= 1; ox += 1) {
-            if (ox === 0 && oy === 0) continue;
-            const sample = state.field[y + oy][x + ox];
-            if (sample >= center) isPeak = false;
-            if (sample > localMax) localMax = sample;
-          }
-        }
+        if ((nw && ne && se && sw) || (!nw && !ne && !se && !sw)) continue;
 
-        if (!isPeak) continue;
-
-        const prominence = center - localMax;
-        const elevation = (center - range.min) / Math.max(1, range.max - range.min);
-        if (prominence < MARKER_CONFIG.prominence || elevation < 0.56) continue;
-
-        markers.push({
-          x: x * size,
-          y: y * size,
-          prominence: prominence,
-          elevation: elevation
-        });
+        const gridValue = binaryToType(nw, ne, se, sw);
+        marchCell(sharpCtx, gridValue, x, y, resolution);
+        if (isMajor) marchCell(glowCtx, gridValue, x, y, resolution);
       }
     }
 
-    markers.sort(function (a, b) {
-      return (b.prominence + (b.elevation * 10)) - (a.prominence + (a.elevation * 10));
-    });
+    if (isMajor) {
+      sharpCtx.strokeStyle = withAlpha(state.theme.majorColor, Math.min(1, 0.72 + (brightnessFactor * 0.4)));
+      sharpCtx.lineWidth = 1.02;
+      sharpCtx.stroke();
 
-    const selected = [];
-    const minDistance = size * 12;
-
-    markers.forEach(function (marker) {
-      if (selected.length >= MARKER_CONFIG.maxCount) return;
-      const isFarEnough = selected.every(function (other) {
-        return Math.hypot(other.x - marker.x, other.y - marker.y) > minDistance;
-      });
-      if (isFarEnough) selected.push(marker);
-    });
-
-    return selected;
+      glowCtx.strokeStyle = withAlpha(state.theme.glowColor, Math.min(1, 0.55 + (brightnessFactor * 0.45)));
+      glowCtx.lineWidth = 3.4;
+      glowCtx.stroke();
+    } else {
+      sharpCtx.strokeStyle = withAlpha(state.theme.minorColor, Math.min(1, 0.7 + (brightnessFactor * 0.3)));
+      sharpCtx.lineWidth = 0.42;
+      sharpCtx.stroke();
+    }
   }
 
-  function renderGhostMarkers(markers) {
-    if (!markers.length) return;
-
-    sharpCtx.save();
-
-    markers.forEach(function (marker, index) {
-      const phase = (state.zOffset * 42) + (index * 0.85);
-      const pulse = 0.72 + (((Math.sin(phase) + 1) * 0.5) * 0.28);
-      const innerRadius = 1.3 + (marker.elevation * 0.85);
-      const ringRadius = 4.5 + (marker.prominence * 0.05);
-
-      sharpCtx.beginPath();
-      sharpCtx.fillStyle = applyAlpha(state.theme.markerFill, pulse);
-      sharpCtx.arc(marker.x, marker.y, innerRadius, 0, Math.PI * 2);
-      sharpCtx.fill();
-
-      sharpCtx.beginPath();
-      sharpCtx.strokeStyle = applyAlpha(state.theme.markerRing, pulse * 0.95);
-      sharpCtx.lineWidth = 0.85;
-      sharpCtx.arc(marker.x, marker.y, ringRadius, 0, Math.PI * 2);
-      sharpCtx.stroke();
+  function withAlpha(rgba, factor) {
+    return rgba.replace(/[\d.]+\)\s*$/, function (match) {
+      const base = parseFloat(match.slice(0, -1));
+      return String((base * factor).toFixed(3)) + ")";
     });
-
-    sharpCtx.restore();
   }
 
   function renderContours() {
-    clearCanvases();
+    const resolution = getResolution(state.width);
+    sharpCtx.clearRect(0, 0, state.width, state.height);
+    glowCtx.clearRect(0, 0, state.width, state.height);
+    generateNoise();
 
-    const range = fillField();
-    const size = getCellSize(state.width);
-    const peakMarkers = collectPeakMarkers(range, size);
-    const thresholdStep = 7;
-    const majorEvery = 5;
-    const roundedMin = Math.floor(range.min / thresholdStep) * thresholdStep;
-    const roundedMax = Math.ceil(range.max / thresholdStep) * thresholdStep;
-    const midpoint = (range.min + range.max) * 0.5;
-    const span = Math.max(1, (range.max - range.min) * 0.5);
+    const roundedMin = Math.floor(state.noiseMin / thresholdIncrement) * thresholdIncrement;
+    const roundedMax = Math.ceil(state.noiseMax / thresholdIncrement) * thresholdIncrement;
 
-    let thresholdIndex = 0;
-
-    for (let threshold = roundedMin; threshold <= roundedMax; threshold += thresholdStep) {
-      const isMajor = thresholdIndex % majorEvery === 0;
-      const distanceFromMid = Math.abs(threshold - midpoint) / span;
-      const fade = Math.max(0.18, 1 - (distanceFromMid * 0.78));
-
-      sharpCtx.beginPath();
-      if (isMajor) glowCtx.beginPath();
-
-      for (let y = 0; y < state.rows - 1; y += 1) {
-        for (let x = 0; x < state.cols - 1; x += 1) {
-          marchCell(sharpCtx, x, y, threshold, size);
-          if (isMajor) marchCell(glowCtx, x, y, threshold, size);
-        }
-      }
-
-      if (isMajor) {
-        sharpCtx.strokeStyle = applyAlpha(state.theme.majorColor, fade);
-        sharpCtx.lineWidth = 0.98;
-        sharpCtx.stroke();
-
-        glowCtx.strokeStyle = applyAlpha(state.theme.glowColor, Math.min(1, fade + 0.08));
-        glowCtx.lineWidth = 2.1;
-        glowCtx.stroke();
-      } else {
-        sharpCtx.strokeStyle = applyAlpha(state.theme.minorColor, fade);
-        sharpCtx.lineWidth = 0.5;
-        sharpCtx.stroke();
-      }
-
-      thresholdIndex += 1;
+    for (let threshold = roundedMin; threshold < roundedMax; threshold += thresholdIncrement) {
+      state.currentThreshold = threshold;
+      renderAtThreshold(resolution);
     }
-
-    renderGhostMarkers(peakMarkers);
   }
 
   function renderStaticFrame() {
@@ -406,7 +310,7 @@
     }
 
     resize();
-    state.zOffset += 0.0012;
+    state.zOffset += baseZOffset;
     renderContours();
     state.lastFrameTime = timestamp;
     requestAnimationFrame(tick);

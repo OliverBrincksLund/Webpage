@@ -776,47 +776,44 @@ body.light .toggle-label { color: var(--gold-l); }
 }
 
 .bg-contour-glow {
-  opacity: 0.24;
-  filter: blur(12px);
+  opacity: 0.32;
+  filter: blur(9px);
 }
 
 .bg-contour-canvas {
-  opacity: 0.78;
+  opacity: 0.88;
 }
 
 body.light .bg-contour-glow {
-  opacity: 0.18;
+  opacity: 0.1;
 }
 
 body.light .bg-contour-canvas {
-  opacity: 0.7;
+  opacity: 0.54;
 }
 
 .bg-scene::before {
-  opacity: 0.82;
-  background-image:
-    linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
-  background-size: 92px 92px;
+  opacity: 0.94;
+  background:
+    radial-gradient(78% 68% at 50% 50%, rgba(255,255,255,0), rgba(0,0,0,0.1)),
+    linear-gradient(180deg, rgba(7,9,14,0.02), rgba(7,9,14,0.18));
 }
 
 .bg-scene::after {
-  opacity: 0.55;
+  opacity: 0.34;
   background:
-    linear-gradient(135deg, rgba(255,255,255,0.05), rgba(255,255,255,0) 38%),
-    radial-gradient(70% 58% at 78% 16%, rgba(255,255,255,0.035), rgba(255,255,255,0) 72%);
+    radial-gradient(65% 56% at 50% 34%, rgba(120,140,220,0.06), rgba(120,140,220,0) 72%);
 }
 
 body.light .bg-scene::before {
-  background-image:
-    linear-gradient(rgba(118,124,116,0.052) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(118,124,116,0.052) 1px, transparent 1px);
+  background:
+    radial-gradient(78% 68% at 50% 50%, rgba(255,255,255,0), rgba(120,118,110,0.07)),
+    linear-gradient(180deg, rgba(247,243,235,0.16), rgba(247,243,235,0.32));
 }
 
 body.light .bg-scene::after {
   background:
-    linear-gradient(135deg, rgba(125,134,124,0.05), rgba(125,134,124,0) 38%),
-    radial-gradient(70% 58% at 78% 16%, rgba(125,134,124,0.03), rgba(125,134,124,0) 72%);
+    radial-gradient(65% 56% at 50% 34%, rgba(132,142,164,0.045), rgba(132,142,164,0) 72%);
 }
 
 .sidebar-monogram {
@@ -907,4 +904,5 @@ body.light .bg-scene::after {
   }
   .bg-scene svg,
   .bg-scene canvas { width: 100%; height: 100%; position: static; }
+
 }
